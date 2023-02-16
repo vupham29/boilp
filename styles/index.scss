@@ -1,0 +1,20 @@
+@import './base/reset.scss';
+@import '@viivue/atomic-css';
+
+@import './utils/variables';
+@import './utils/mixins';
+@import './utils/vendors';
+@import './utils/responsive';
+
+@import './base/font';
+@import './base/base';
+
+// components
+@import './components/preloader';
+@import './components/aside';
+
+// layout
+@import './layout/navigation';
+
+// pages
+@import './pages/home';

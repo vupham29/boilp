@@ -1,0 +1,16 @@
+.preloader {
+  background: $color-primary;
+  font-size: $size-h2;
+
+  overflow: hidden;
+
+  span {
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  &__text {
+    margin-bottom: $spacing-60;
+    line-height: 1.3;
+  }
+}

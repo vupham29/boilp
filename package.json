@@ -1,0 +1,63 @@
+{
+  "name": "expressjs-boilerplate",
+  "version": "0.0.1",
+  "description": "An ExpressJS Boilerplate",
+  "main": "server.js",
+  "scripts": {
+    "backend:dev": "nodemon server.js",
+    "backend:build": "node server.js",
+    "frontend:dev": "webpack --config config/webpack.dev.js",
+    "frontend:watch": "webpack-dev-server --config config/webpack.dev.js",
+    "frontend:build": "webpack --config config/webpack.build.js",
+    "start": "concurrently --kill-others \"npm run frontend:watch\" \"npm run backend:dev\"",
+    "build": "concurrently --kill-others \"npm run frontend:build\" \"npm run backend:build\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuquangpham/expressjs-boilerplate.git"
+  },
+  "keywords": [
+    "expressjs",
+    "boilerplate",
+    "nodejs"
+  ],
+  "author": "Vu Pham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vuquangpham/expressjs-boilerplate/issues"
+  },
+  "homepage": "https://github.com/vuquangpham/expressjs-boilerplate#readme",
+  "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@babel/preset-env": "^7.19.4",
+    "@viivue/atomic-css": "^1.1.6",
+    "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "concurrently": "^7.6.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.2.2",
+    "dotenv": "^16.0.3",
+    "file-loader": "^6.2.0",
+    "image-minimizer-webpack-plugin": "^3.8.1",
+    "mini-css-extract-plugin": "^2.6.1",
+    "node-sass": "^7.0.3",
+    "nodemon": "^2.0.20",
+    "postcss-loader": "^7.0.1",
+    "postcss-preset-env": "^7.8.2",
+    "pug": "^3.0.2",
+    "sass-loader": "^13.1.0",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.6",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "gsap": "^3.11.4",
+    "ua-parser-js": "^1.0.33"
+  }
+}

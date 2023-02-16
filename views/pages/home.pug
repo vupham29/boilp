@@ -1,0 +1,11 @@
+extends ../template
+
+block variables
+    - var template = 'home'
+
+block content
+    .home(class="d-flex lesson")
+        .home__aside(class="lesson__aside txt_color_white")
+            include ../partials/aside
+        .home__content(class="lesson__content")
+            p Home page content
