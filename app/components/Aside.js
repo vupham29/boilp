@@ -30,9 +30,4 @@ export default class Aside extends Component{
     createEventListener(){
         this.element.addEventListener("click", this.toggleAside.bind(this));
     }
-
-    removeEventListener(){
-        this.element.removeEventListener("click", this.toggleAside.bind(this));
-    }
-
 }

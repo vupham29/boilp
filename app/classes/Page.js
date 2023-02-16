@@ -13,8 +13,6 @@ export default class Page extends Utils{
      */
     show(){
         return new Promise(resolve => {
-            this.animationIn = GSAP.timeline();
-
             GSAP.fromTo(this.element, {
                 autoAlpha: 0
             }, {

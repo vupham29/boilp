@@ -26,7 +26,7 @@ app.use((req, res, next) => {
     app.locals.isMobile = ua.device.type === "mobile";
 
     app.locals.preloader = {
-        title: "WebGL Journey"
+        title: "Learning Template"
     };
 
     app.locals.lessons = LESSONS;
@@ -55,12 +55,12 @@ app.get("/lesson/:id", (req, res, next) => {
         });
         return;
     }
-    next(new Error("404 page err "));
+    next(new Error("Not found"));
 });
 
 // Error Handler
 app.use((req, res, next) => {
-    next(new Error("Not exist"));
+    next(new Error("Not found"));
 });
 
 // Not found page
