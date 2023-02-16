@@ -20,13 +20,13 @@ With all the best, hope you like it
 - Create new `lesson.pug` file
 - Create new `lesson.js` file (with class base template)
 
-![Step 1](./shared/ezgif-2-10a6ae19c5.gif)
+![Step 1](./shared/ezgif-2-28bf0a3d97.gif)
 
 ### Step 2:
 
 - Open dev server -> that's enough
 
-![Step 1](./shared/ezgif-2-7be7bddb43.gif)
+![Step 2](./shared/ezgif-2-7be7bddb43.gif)
 
 ## Deployment
 
