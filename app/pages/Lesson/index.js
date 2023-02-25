@@ -12,6 +12,9 @@ export default class Lesson extends Page{
         super.create();
         this.id = this.element.getAttribute('data-lesson');
 
+        // not lessons page
+        if(!this.id) return;
+
         // create instance
         const instanceName = "lesson_" + this.id;
         import(`./${instanceName}.js`)
