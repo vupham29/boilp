@@ -28,6 +28,11 @@
       pointer-events: none;
       opacity: 0;
     }
+
+    // active item
+    aside li a.active {
+      color: $color-primary;
+    }
   }
 
   &__content {

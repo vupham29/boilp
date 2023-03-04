@@ -3,5 +3,5 @@ aside
     ul
         each lesson in lessons
             li
-                a(href=`lesson/${lesson.id}`)=lesson.title
+                a(href=`lesson/${lesson.id}`, class = lesson.id === id ? 'active' : '')=lesson.title
 .close(class="close fl-center ps-absolute c-pointer t") &times;

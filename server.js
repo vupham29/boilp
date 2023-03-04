@@ -49,9 +49,8 @@ app.get("/lesson/:id", (req, res, next) => {
 
     if(isExist){
         res.render(`lessons/${id}`, {
-            title: "Home",
-            path: "home",
-            lesson: id
+            title: "Lesson",
+            id: id
         });
         return;
     }
