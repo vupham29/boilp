@@ -33,6 +33,49 @@
     aside li a.active {
       color: $color-primary;
     }
+
+    // menu item has children
+    li.menu-item-has-children {
+      & > a {
+        width: 80%;
+      }
+
+      // trigger button
+      button.expand {
+        width: 40px;
+        cursor: pointer;
+        position: relative;
+        background: transparent;
+        border: none;
+
+        &:after,
+        &:before {
+          content: '-';
+          position: absolute;
+          font-size: 30px;
+          color: $color-primary;
+
+          // position
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          transition: $transition;
+        }
+
+        &:after {
+          content: '+';
+        }
+
+        &.active:after,
+        &:not(.active):before {
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transform: translate(-50%, -50%) rotate(-45deg)
+        }
+      }
+    }
   }
 
   &__content {

@@ -1,13 +1,14 @@
 aside
     h1=preloader.title
-    ul.menu
+    ul.menu(data-eta)
         each lesson in lessons
-            li
+            li(class= lesson.lessons.length > 0 ? "menu-item menu-item-has-children fl-grid" : "menu-item")
                 a(href=`${lesson.base}`, class = lesson.base === base ? 'active' : '')=lesson.title
                 if lesson.lessons.length > 0
-                    ul.sub-menu
+                    button.expand(data-eta-trigger=`${lesson.base}`)
+                    ul.sub-menu(data-eta-receiver=`${lesson.base}`, class="w100")
                         each page in lesson.lessons
-                            li
+                            li(class="menu-item")
                                 a(href=`${lesson.base}/${page.id}`, class = page.id === id ? 'active' : '')=page.title
 .close(class="close fl-center ps-absolute c-pointer t") &times;
 

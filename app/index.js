@@ -2,6 +2,7 @@ import Home from './pages/Home/index';
 import NotFound from './pages/NotFound/index';
 import Preloader from './components/Preloader';
 import WebGL from "./pages/webgl";
+import "@viivue/easy-tab-accordion";
 
 class App{
     constructor(){
