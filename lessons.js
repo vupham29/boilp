@@ -25,7 +25,7 @@ const createLessonsPrototype = (lessons = []) => lessons.map(lesson => {
 
         cloneFile(pugPath, templateName, page.id, '.pug'); // pug file
     });
-
+    return lesson;
 });
 
 module.exports = createLessonsPrototype([
