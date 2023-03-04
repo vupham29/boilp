@@ -41,31 +41,38 @@ app.get("/", (req, res) => {
     });
 });
 
-// Lesson pages
-app.get("/lesson/:id", (req, res, next) => {
-    const id = req.params.id ? (0 + req.params.id).slice(-2) : "";
+app.get("/:base/:id", (req, res, next) => {
+    const base = req.params.base;
+    const id = req.params.id;
 
-    const isExist = LESSONS.filter(l => l.id === id);
-
-    if(isExist){
-        res.render(`lessons/${id}`, {
-            title: "Lesson",
-            id: id
-        });
-        return;
+    // not exist base or id
+    if(!base || !id){
+        return next(new Error(`Not found base and id`));
     }
-    next(new Error("Not found"));
+
+    const baseResult = LESSONS.find(lesson => lesson.base === base);
+    const lessonResult = baseResult.lessons.find(lesson => lesson.id === id) ?? baseResult.lessons[0];
+
+    // not found the base
+    if(!baseResult){
+        return next(new Error(`Not found the base`));
+    }
+
+    res.render(`${base}/${id}`, {
+        title: lessonResult.title,
+        id: lessonResult.id
+    });
 });
 
 // Error Handler
 app.use((req, res, next) => {
-    next(new Error("Not found"));
+    next(new Error("Page does not exist. Please try again!!!"));
 });
 
 // Not found page
 app.use((error, req, res, next) => {
     res.render("pages/404", {
-        title: "Not Found",
+        title: error.message,
         path: "404",
     });
 });
