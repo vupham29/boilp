@@ -68,6 +68,11 @@ class App{
             this.page.create();
             this.page.show();
 
+            // generate ETA
+            ETA.init({
+                id: 'data-eta'
+            });
+
             this.addLinksListener();
         }else{
             console.log("Error!");

@@ -1,6 +1,6 @@
 aside
     h1=preloader.title
-    ul.menu(data-eta)
+    ul.menu(data-eta, id="data-eta")
         each lesson in lessons
             li(class= lesson.lessons.length > 0 ? "menu-item menu-item-has-children fl-grid" : "menu-item")
                 a(href=`${lesson.base}`, class = lesson.base === base ? 'active' : '')=lesson.title
