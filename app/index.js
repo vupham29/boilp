@@ -1,7 +1,7 @@
 import Home from './pages/Home/index';
 import NotFound from './pages/NotFound/index';
 import Preloader from './components/Preloader';
-import Lesson from "./pages/Lesson";
+import WebGL from "./pages/webgl";
 
 class App{
     constructor(){
@@ -23,7 +23,7 @@ class App{
     createPages(){
         this.pages = {
             home: new Home(),
-            lesson: new Lesson(),
+            webgl: new WebGL(),
             error: new NotFound()
         };
 

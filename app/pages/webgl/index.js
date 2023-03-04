@@ -1,7 +1,7 @@
 import Page from '../../classes/Page';
 import Aside from "../../components/Aside";
 
-export default class Lesson extends Page{
+export default class extends Page{
     constructor(){
         super({
             element: '.lesson',
@@ -16,7 +16,7 @@ export default class Lesson extends Page{
         if(!this.id) return;
 
         // create instance
-        const instanceName = "lesson_" + this.id;
+        const instanceName = this.id;
         import(`./${instanceName}.js`)
             .then((instance) => {
                 this.lesson = new instance.default({
