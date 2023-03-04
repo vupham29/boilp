@@ -37,7 +37,6 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
     res.render("pages/home", {
         title: "Home",
-        path: "home",
     });
 });
 
@@ -99,10 +98,8 @@ app.use((req, res, next) => {
 
 // Not found page
 app.use((error, req, res, next) => {
-    // console.log(error);
     res.render("pages/404", {
         title: error.message,
-        path: "404",
     });
 });
 
