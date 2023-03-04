@@ -87,6 +87,7 @@ app.get("/:base/:id", (req, res, next) => {
 
     res.render(`${base}/${lessonResult.id}`, {
         title: lessonResult.title,
+        base: base,
         id: lessonResult.id,
     });
 });

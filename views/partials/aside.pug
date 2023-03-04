@@ -1,7 +1,13 @@
 aside
-    h1 Learning Template
-    ul
+    h1=preloader.title
+    ul.menu
         each lesson in lessons
             li
-                a(href=`lesson/${lesson.id}`, class = lesson.id === id ? 'active' : '')=lesson.title
+                a(href=`${lesson.base}`, class = lesson.base === base ? 'active' : '')=lesson.title
+                if lesson.lessons.length > 0
+                    ul.sub-menu
+                        each page in lesson.lessons
+                            li
+                                a(href=`${lesson.base}/${page.id}`, class = page.id === id ? 'active' : '')=page.title
 .close(class="close fl-center ps-absolute c-pointer t") &times;
+
