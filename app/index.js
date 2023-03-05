@@ -36,9 +36,9 @@ class App{
         this.preloader = new Preloader();
     }
 
-    /*
-    Events
-    */
+    /**
+     * Events
+     * */
 
     onPreloaded(){
         this.preloader.destroy();
@@ -68,11 +68,7 @@ class App{
             this.page.create();
             this.page.show();
 
-            // generate ETA
-            ETA.init({
-                id: 'data-eta'
-            });
-
+            this.initEta();
             this.addLinksListener();
         }else{
             console.log("Error!");
@@ -83,10 +79,19 @@ class App{
         this.handlePageChange({url: window.location.pathname, push: false});
     }
 
+    /**
+     * Init ETA
+     * */
+    initEta(){
+        // generate ETA
+        ETA.init({
+            id: 'data-eta'
+        });
+    }
 
-    /*
-    Listeners
-    */
+    /**
+     * Listeners
+     * */
     addEventListener(){
         // Handle links click
         this.addLinksListener();
