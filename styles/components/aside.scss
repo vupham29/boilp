@@ -1,18 +1,10 @@
 .lesson {
   min-height: 100vh;
 
-  a.go-back {
-    margin-bottom: $spacing-30;
-    display: block;
-
-    &:before {
-      content: '\2039  ';
-      font-size: 1.5em;
-    }
-  }
-
   &__aside {
     width: clamp(300px, 21vw, 400px);
+    height: 100vh;
+    overflow: auto;
     padding: 4rem;
     background: #212529;
     position: relative;
@@ -30,6 +22,7 @@
     }
 
     // active item
+    aside li.active-base > a,
     aside li a.active {
       color: $color-primary;
     }
@@ -111,18 +104,32 @@ ul.menu {
 
   // menu has children
   & li.menu-item-has-children {
-    background: #1864ab;
+    background: $color-secondary;
     padding: 2rem;
     border-radius: 5px;
   }
 
   // li not last child
   & > li:not(:last-child) {
-    margin-bottom: $spacing-30;
+    margin-bottom: $spacing-20;
   }
 
   // permalink
   & li a {
     text-decoration: none;
+  }
+}
+
+// go back button
+a.go-back {
+  margin-bottom: $spacing-20;
+  display: block;
+  text-decoration: none;
+  position: relative;
+
+  &:before {
+    content: '\2039';
+    font-size: 1.5em;
+    margin-right: 5px;
   }
 }
