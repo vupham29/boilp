@@ -1,4 +1,4 @@
-import Component from "../classes/Component";
+import Component from "@/classes/Component";
 import GSAP from "gsap";
 
 export default class Aside extends Component{

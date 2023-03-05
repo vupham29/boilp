@@ -19,12 +19,9 @@ module.exports = {
 
     resolve: {
         extensions: ['.ts', '.js', '.json'],
-        modules: [
-            dirApp,
-            dirShared,
-            dirStyles,
-            dirNodeModules
-        ]
+        alias: {
+            '@': dirApp
+        },
     },
 
     module: {

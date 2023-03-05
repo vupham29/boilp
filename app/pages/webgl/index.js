@@ -1,5 +1,5 @@
-import Page from '../../classes/Page';
-import Aside from "../../components/Aside";
+import Page from '@/classes/Page';
+import Aside from "@/components/Aside";
 
 export default class extends Page{
     constructor(){
