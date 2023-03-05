@@ -1,5 +1,4 @@
 import Page from '@/classes/Page';
-import Aside from "@/components/Aside";
 
 export default class extends Page{
     constructor(){
@@ -27,7 +26,5 @@ export default class extends Page{
                     canvas: this.element.querySelector('#canvas')
                 });
             });
-
-        this.asideElement = new Aside();
     }
 }

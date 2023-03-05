@@ -1,6 +1,7 @@
 import Home from './pages/Home/index';
 import NotFound from './pages/NotFound/index';
 import Preloader from './components/Preloader';
+import Aside from "@/components/Aside";
 import "@viivue/easy-tab-accordion";
 
 class App{
@@ -12,6 +13,7 @@ class App{
 
         this.addEventListener();
         this.initEta();
+        this.asideElement = new Aside();
     }
 
 
@@ -86,6 +88,7 @@ class App{
 
                 this.initEta();
                 this.addLinksListener();
+                this.asideElement = new Aside();
             });
         }else{
             console.log("Error!");
