@@ -1,7 +1,6 @@
 import Home from './pages/Home/index';
 import NotFound from './pages/NotFound/index';
 import Preloader from './components/Preloader';
-import WebGL from "./pages/webgl";
 import "@viivue/easy-tab-accordion";
 
 class App{
@@ -26,11 +25,26 @@ class App{
         this.pages = {
             home: new Home(),
             error: new NotFound(),
-            webgl: new WebGL(),
         };
 
-        // create a routing with AJAX and gives single page app behaviour
-        this.page = this.pages[this.template];
+        this.dynamicImportPage().then(() => {
+            this.page = this.pages[this.template];
+        });
+    }
+
+    dynamicImportPage(){
+        return new Promise((resolve) => {
+            // smart import
+            if(!this.pages[this.template]){
+                import(`@/pages/${this.template}`)
+                    .then((instance) => {
+                        this.pages[this.template] = new instance.default();
+                        resolve();
+                    });
+            }else{
+                resolve();
+            }
+        });
     }
 
     createPreloader(){
@@ -65,12 +79,14 @@ class App{
                 window.history.pushState({}, '', url);
             }
 
-            this.page = this.pages[this.template];
-            this.page.create();
-            this.page.show();
+            this.dynamicImportPage().then(() => {
+                this.page = this.pages[this.template];
+                this.page.create();
+                this.page.show();
 
-            this.initEta();
-            this.addLinksListener();
+                this.initEta();
+                this.addLinksListener();
+            });
         }else{
             console.log("Error!");
         }
