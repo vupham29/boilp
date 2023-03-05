@@ -23,10 +23,12 @@ With all the best, hope you like it
 ### Step 2:
 
 - The engine will generate the file automatically.
-  ![Step 2](./shared/ezgif-1-11ff4f86ec.gif)
+  
+![Step 2](./shared/ezgif-1-11ff4f86ec.gif)
 
 - Open dev server -> that's enough
-  ![Step 2](./shared/ezgif-2-456b57770b.gif)
+
+![Step 2](./shared/ezgif-5-94d2b33b8f.gif)
 
 ## Deployment
 
