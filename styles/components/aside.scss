@@ -1,10 +1,7 @@
 .lesson {
-  min-height: 100vh;
-
   &__aside {
     width: clamp(300px, 21vw, 400px);
     height: 100vh;
-    overflow: auto;
     padding: 4rem;
     background: #212529;
     position: relative;
@@ -22,9 +19,14 @@
     }
 
     // active item
-    aside li.active-base > a,
-    aside li a.active {
-      color: $color-primary;
+    aside {
+      height: 100%;
+      overflow: auto;
+
+      li.active-base > a,
+      li a.active {
+        color: $color-primary;
+      }
     }
 
     // menu item has children

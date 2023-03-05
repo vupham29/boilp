@@ -68,6 +68,10 @@ h6 {
   font-size: $size-h6;
 }
 
+p {
+  margin-bottom: $spacing-30;
+}
+
 /* Default unordered list for text block */
 ul {
   list-style: none;
@@ -140,4 +144,9 @@ ul ul > li:before {
 
 ::-webkit-scrollbar-thumb {
   background-color: $color-primary;
+}
+
+// content
+.content {
+  min-height: 100vh;
 }
