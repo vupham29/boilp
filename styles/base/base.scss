@@ -68,6 +68,10 @@ h6 {
   font-size: $size-h6;
 }
 
+p {
+  margin-bottom: $spacing-30;
+}
+
 /* Default unordered list for text block */
 ul {
   list-style: none;
@@ -75,7 +79,7 @@ ul {
 }
 
 ul ul {
-  padding-top: 15px;
+  padding-top: 1.5rem;
 }
 
 ul:not(:last-child) {
@@ -83,12 +87,12 @@ ul:not(:last-child) {
 }
 
 ul > li {
-  padding: 0 0 0 20px;
+  padding: 0 0 0 2rem;
   position: relative;
 }
 
 ul > li:not(:last-child) {
-  margin-bottom: 11px;
+  margin-bottom: 1rem;
 }
 
 ul > li:before {
@@ -127,4 +131,22 @@ ul ul > li:before {
 .txt_color_white a:hover,
 .txt_color_white a:focus {
   color: $color-primary;
+}
+
+// custom scrollbar
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $color-primary;
+}
+
+// content
+.content {
+  min-height: 100vh;
 }

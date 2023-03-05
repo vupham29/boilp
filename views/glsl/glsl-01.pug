@@ -1,13 +1,12 @@
 extends ../template
 
 block variables
-    - var template = 'lesson'
+    - var template = base;
 
 block content
-    .lesson(class="d-flex", data-lesson=`${lesson}`)
+    .lesson(class="d-flex", data-lesson=`${id}`)
         .lesson__aside(class="txt_color_white")
             a(href="/", class="go-back t") Back
             include ../partials/aside
         .lesson__content
             block lesson_content
-            canvas#canvas

@@ -1,7 +1,7 @@
 import Home from './pages/Home/index';
 import NotFound from './pages/NotFound/index';
 import Preloader from './components/Preloader';
-import Lesson from "./pages/Lesson";
+import "@viivue/easy-tab-accordion";
 
 class App{
     constructor(){
@@ -11,6 +11,7 @@ class App{
         this.createPages();
 
         this.addEventListener();
+        this.initEta();
     }
 
 
@@ -23,21 +24,36 @@ class App{
     createPages(){
         this.pages = {
             home: new Home(),
-            lesson: new Lesson(),
-            error: new NotFound()
+            error: new NotFound(),
         };
 
-        // create a routing with AJAX and gives single page app behaviour
-        this.page = this.pages[this.template];
+        this.dynamicImportPage().then(() => {
+            this.page = this.pages[this.template];
+        });
+    }
+
+    dynamicImportPage(){
+        return new Promise((resolve) => {
+            // smart import
+            if(!this.pages[this.template]){
+                import(`@/pages/${this.template}`)
+                    .then((instance) => {
+                        this.pages[this.template] = new instance.default();
+                        resolve();
+                    });
+            }else{
+                resolve();
+            }
+        });
     }
 
     createPreloader(){
         this.preloader = new Preloader();
     }
 
-    /*
-    Events
-    */
+    /**
+     * Events
+     * */
 
     onPreloaded(){
         this.preloader.destroy();
@@ -63,11 +79,14 @@ class App{
                 window.history.pushState({}, '', url);
             }
 
-            this.page = this.pages[this.template];
-            this.page.create();
-            this.page.show();
+            this.dynamicImportPage().then(() => {
+                this.page = this.pages[this.template];
+                this.page.create();
+                this.page.show();
 
-            this.addLinksListener();
+                this.initEta();
+                this.addLinksListener();
+            });
         }else{
             console.log("Error!");
         }
@@ -77,10 +96,25 @@ class App{
         this.handlePageChange({url: window.location.pathname, push: false});
     }
 
+    /**
+     * Init ETA
+     * */
+    initEta(){
+        const getActiveSection = () => {
+            const allList = document.querySelectorAll('aside ul.menu > li');
+            return Array.from(allList).findIndex(li => li.classList.contains('active-base'));
+        };
 
-    /*
-    Listeners
-    */
+        // generate ETA
+        ETA.init({
+            el: this.content.querySelector('#data-eta'),
+            activeSection: getActiveSection()
+        });
+    }
+
+    /**
+     * Listeners
+     * */
     addEventListener(){
         // Handle links click
         this.addLinksListener();

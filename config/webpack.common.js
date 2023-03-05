@@ -13,17 +13,15 @@ module.exports = {
     entry: [path.join(dirApp, 'index.js'), path.join(dirStyles, 'index.scss')],
 
     output: {
-        path: dirPublic
+        path: dirPublic,
+        clean: true
     },
 
     resolve: {
         extensions: ['.ts', '.js', '.json'],
-        modules: [
-            dirApp,
-            dirShared,
-            dirStyles,
-            dirNodeModules
-        ]
+        alias: {
+            '@': dirApp
+        },
     },
 
     module: {

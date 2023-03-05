@@ -10,23 +10,23 @@ With all the best, hope you like it
 
 ## Demo site
 
-![Demo site](./shared/ezgif-2-2e17c019ce.gif)
+![Demo site](./shared/ezgif-2-456b57770b.gif)
 
 ## How to use
 
 ### Step 1:
 
-- Add new lesson in `lessons.js`
-- Create new `lesson.pug` file
-- Create new `lesson.js` file (with class base template)
+- Add new lesson in `lessons.js` (you can duplicate the old one)
 
-![Step 1](./shared/ezgif-2-28bf0a3d97.gif)
+![Step 1](./shared/ezgif-1-a5d377d49b.gif)
 
 ### Step 2:
 
-- Open dev server -> that's enough
+- The engine will generate the file automatically.
+  ![Step 2](./shared/ezgif-1-11ff4f86ec.gif)
 
-![Step 2](./shared/ezgif-2-7be7bddb43.gif)
+- Open dev server -> that's enough
+  ![Step 2](./shared/ezgif-2-456b57770b.gif)
 
 ## Deployment
 

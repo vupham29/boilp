@@ -1,18 +1,7 @@
 .lesson {
-  min-height: 100vh;
-
-  a.go-back {
-    margin-bottom: $spacing-30;
-    display: block;
-
-    &:before {
-      content: '\2039  ';
-      font-size: 1.5em;
-    }
-  }
-
   &__aside {
     width: clamp(300px, 21vw, 400px);
+    height: 100vh;
     padding: 4rem;
     background: #212529;
     position: relative;
@@ -30,8 +19,57 @@
     }
 
     // active item
-    aside li a.active {
-      color: $color-primary;
+    aside {
+      height: 100%;
+      overflow: auto;
+
+      li.active-base > a,
+      li a.active {
+        color: $color-primary;
+      }
+    }
+
+    // menu item has children
+    li.menu-item-has-children {
+      & > a {
+        width: 80%;
+      }
+
+      // trigger button
+      button.expand {
+        width: 40px;
+        cursor: pointer;
+        position: relative;
+        background: transparent;
+        border: none;
+
+        &:after,
+        &:before {
+          content: '-';
+          position: absolute;
+          font-size: 30px;
+          color: $color-primary;
+
+          // position
+          top: 50%;
+          right: 0;
+          transform: translateY(-50%);
+
+          transition: $transition;
+        }
+
+        &:after {
+          content: '+';
+        }
+
+        &.active:after,
+        &:not(.active):before {
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transform: translate(-50%, -50%) rotate(-45deg)
+        }
+      }
     }
   }
 
@@ -55,5 +93,45 @@
     &:hover {
       background: $color-primary;
     }
+  }
+}
+
+// menu
+ul.menu {
+
+  // dot
+  & li:before {
+    content: unset;
+  }
+
+  // menu has children
+  & li.menu-item-has-children {
+    background: $color-secondary;
+    padding: 2rem;
+    border-radius: 5px;
+  }
+
+  // li not last child
+  & > li:not(:last-child) {
+    margin-bottom: $spacing-20;
+  }
+
+  // permalink
+  & li a {
+    text-decoration: none;
+  }
+}
+
+// go back button
+a.go-back {
+  margin-bottom: $spacing-20;
+  display: block;
+  text-decoration: none;
+  position: relative;
+
+  &:before {
+    content: '\2039';
+    font-size: 1.5em;
+    margin-right: 5px;
   }
 }
