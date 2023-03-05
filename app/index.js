@@ -25,8 +25,8 @@ class App{
     createPages(){
         this.pages = {
             home: new Home(),
+            error: new NotFound(),
             webgl: new WebGL(),
-            error: new NotFound()
         };
 
         // create a routing with AJAX and gives single page app behaviour

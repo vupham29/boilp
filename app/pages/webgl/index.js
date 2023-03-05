@@ -10,7 +10,7 @@ export default class extends Page{
 
     create(){
         super.create();
-        this.id = this.element.getAttribute('data-lesson');
+        this.id = this.element?.getAttribute('data-lesson');
 
         // not lessons page
         if(!this.id) return;

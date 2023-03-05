@@ -45,14 +45,14 @@ app.get('/:base', (req, res, next) => {
 
     // not exist base
     if(!base){
-        return next(new Error(`Not found base`));
+        return next(new Error(`Not found the base`));
     }
 
     const baseResult = LESSONS.find(lesson => lesson.base === base);
 
     // not found the base
     if(!baseResult){
-        return next(new Error(`Not found the base`));
+        return next(new Error(`Found the base but doesn't exist`));
     }
 
     // render the first lesson
@@ -76,12 +76,12 @@ app.get("/:base/:id", (req, res, next) => {
 
     // not found the base
     if(!baseResult){
-        return next(new Error(`Not found the base`));
+        return next(new Error(`Found the base but doesn't exist`));
     }
 
     // not found the ID
     if(!lessonResult){
-        return next(new Error(`Not found the ID`));
+        return next(new Error(`Found the base but ID doesn't exist`));
     }
 
     res.render(`${base}/${lessonResult.id}`, {
@@ -93,13 +93,14 @@ app.get("/:base/:id", (req, res, next) => {
 
 // Error Handler
 app.use((req, res, next) => {
-    next(new Error("ko thay ne"));
+    next(new Error("URL doesn't exist"));
 });
 
 // Not found page
 app.use((error, req, res, next) => {
     res.render("pages/404", {
-        title: error.message,
+        title: 'OOPS! \n' + '404 PAGE NOT FOUND',
+        message: 'The page you’re looking for does not exist or has been removed.\n' + 'You can proceed to our Homepage.',
     });
 });
 
