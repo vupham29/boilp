@@ -5,15 +5,22 @@ const path = require('path');
  * Check folder exist
  * */
 const isPathExistSync = (directoryPath, folderName, extension = '') => {
+    if(!folderName && !extension) return fs.existsSync(directoryPath);
     return fs.existsSync(path.join(directoryPath, folderName + extension));
 };
 
 
-const cloneFile = (directoryPath, sourceFile, newFile, extension, callback = () => {
-}) => {
-    if(isPathExistSync(directoryPath, newFile, extension)) return;
-
-    fs.copyFile(path.join(directoryPath, sourceFile + extension), path.join(directoryPath, newFile + extension), (err) => {
+/**
+ * Clone file
+ * */
+const cloneFile = ({
+                       source = '',
+                       destination = '',
+                       callback = () => {
+                       }
+                   }) => {
+    if(isPathExistSync(destination)) return;
+    fs.copyFile(source, destination, (err) => {
         console.log(err);
         if(err){
             callback(false);
@@ -23,7 +30,18 @@ const cloneFile = (directoryPath, sourceFile, newFile, extension, callback = () 
     });
 };
 
+
+/**
+ * Create Directory
+ * */
+const createDirectory = (path) => {
+    if(!fs.existsSync(path)){
+        fs.mkdirSync(path);
+    }
+};
+
 module.exports = {
     isPathExistSync,
-    cloneFile
+    cloneFile,
+    createDirectory
 };
