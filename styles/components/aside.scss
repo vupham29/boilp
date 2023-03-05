@@ -57,8 +57,8 @@
 
           // position
           top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+          right: 0;
+          transform: translateY(-50%);
 
           transition: $transition;
         }
@@ -98,5 +98,31 @@
     &:hover {
       background: $color-primary;
     }
+  }
+}
+
+// menu
+ul.menu {
+
+  // dot
+  & li:before {
+    content: unset;
+  }
+
+  // menu has children
+  & li.menu-item-has-children {
+    background: #1864ab;
+    padding: 2rem;
+    border-radius: 5px;
+  }
+
+  // li not last child
+  & > li:not(:last-child) {
+    margin-bottom: $spacing-30;
+  }
+
+  // permalink
+  & li a {
+    text-decoration: none;
   }
 }
