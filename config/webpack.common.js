@@ -13,7 +13,8 @@ module.exports = {
     entry: [path.join(dirApp, 'index.js'), path.join(dirStyles, 'index.scss')],
 
     output: {
-        path: dirPublic
+        path: dirPublic,
+        clean: true
     },
 
     resolve: {
