@@ -12,6 +12,7 @@ class App{
         this.createPages();
 
         this.addEventListener();
+        this.initEta();
     }
 
 
@@ -83,9 +84,15 @@ class App{
      * Init ETA
      * */
     initEta(){
+        const getActiveSection = () => {
+            const allList = document.querySelectorAll('aside ul.menu > li');
+            return Array.from(allList).findIndex(li => li.classList.contains('active-base'));
+        };
+
         // generate ETA
         ETA.init({
-            id: 'data-eta'
+            el: this.content.querySelector('#data-eta'),
+            activeSection: getActiveSection()
         });
     }
 
