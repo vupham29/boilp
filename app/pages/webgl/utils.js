@@ -4,7 +4,6 @@ export default class Utils{
         this.canvas = canvas;
 
         this.createCanvas();
-        console.log('generate instance', this);
     }
 
     createCanvas(){
