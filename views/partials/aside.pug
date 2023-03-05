@@ -1,9 +1,10 @@
 aside
     h1=preloader.title
-    ul.menu(data-eta, id="data-eta")
+    ul.menu(id="data-eta")
         each lesson in lessons
-            li(class= lesson.lessons.length > 0 ? "menu-item menu-item-has-children fl-grid" : "menu-item")
-                a(href=`${lesson.base}`, class = lesson.base === base ? 'active' : '')=lesson.title
+            - var activeClass = lesson.base === base ? 'active-base' : '';
+            li(class= lesson.lessons.length > 0 ? `menu-item menu-item-has-children fl-grid ${activeClass}` : `menu-item ${activeClass}`)
+                a(href=`${lesson.base}`)=lesson.title
                 if lesson.lessons.length > 0
                     button.expand(data-eta-trigger=`${lesson.base}`)
                     ul.sub-menu(data-eta-receiver=`${lesson.base}`, class="w100")
