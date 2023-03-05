@@ -1,4 +1,4 @@
-const {isPathExistSync, cloneFile} = require("./utils/utils");
+const {isPathExistSync, cloneFile, createDirectory} = require("./utils/utils");
 const path = require('path');
 
 const createLessonsPrototype = (lessons = []) => lessons.map(lesson => {
@@ -10,21 +10,54 @@ const createLessonsPrototype = (lessons = []) => lessons.map(lesson => {
     pages.forEach((page, i) => {
         if(!page.id){
             page.id = `${lesson.base}-${('0' + (i + 1)).slice(-2)}`;
-            console.log(page.id);
         }
         const templateName = `${lesson.base}-template`;
 
         // template doesn't exist => simply return, not create the prototype for it
-        if(!isPathExistSync(appPath, templateName, '.js')) return; // js file
+        if(!isPathExistSync(appPath, templateName, '.js')){
+            // create directory first
+            createDirectory(appPath);
+
+            // template path
+            const templatePath = path.join(appPath, '..', 'template');
+
+            cloneFile({
+                source: path.join(templatePath, 'index.js'),
+                destination: path.join(appPath, 'index' + '.js')
+            });
+
+            cloneFile({
+                source: path.join(templatePath, 'template.js'),
+                destination: path.join(appPath, templateName + '.js')
+            });
+        }
 
         // clone the template for the new-id
-        cloneFile(appPath, templateName, page.id, '.js'); // app file
+        cloneFile({
+            source: path.join(appPath, templateName + '.js'),
+            destination: path.join(appPath, page.id + '.js')
+        }); // app file
 
         // pug template
-        if(!isPathExistSync(pugPath, templateName, '.pug')) return; // pug file
+        if(!isPathExistSync(pugPath, templateName, '.pug')){
+            // create directory first
+            createDirectory(pugPath);
 
-        cloneFile(pugPath, templateName, page.id, '.pug'); // pug file
+            // template path
+            const templatePath = path.join(pugPath, '..', 'template');
+
+            cloneFile({
+                source: path.join(templatePath, 'template.pug'),
+                destination: path.join(pugPath, templateName + '.pug')
+            });
+        }
+
+        cloneFile({
+            source: path.join(pugPath, templateName + '.pug'),
+            destination: path.join(pugPath, page.id + '.pug')
+        }); // pug file
     });
+
     return lesson;
 });
 
@@ -34,20 +67,20 @@ module.exports = createLessonsPrototype([
         base: 'webgl',
         lessons: [
             {
-                title: 'App boilerplate'
+                title: 'Drawing a single point'
             },
             {
-                title: 'App boilerplate'
+                title: 'WebGL Coordinate'
             }
         ]
     },
     {
-        title: 'GL Shader Language',
+        title: 'GL Shading Language',
         base: 'glsl',
         lessons: [
             {
-                title: 'App boilerplate'
-            }
+                title: 'Drawing a single point'
+            },
         ]
     },
 ]);
