@@ -33,7 +33,9 @@ html(lang="en")
         //meta(property="twitter:image" content=meta.data.image ? meta.data.image.url : '')
 
         link(href="main.css" rel="stylesheet")
+        link(href="prism.css" rel="stylesheet")
         script(src="main.js", defer='')
+        script(src="prism.js", defer='')
 
     body(class=isDesktop ? 'desktop' : isTablet ? 'tablet' : isMobile ? 'mobile' : '')
         include ./partials/preloader
