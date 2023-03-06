@@ -83,7 +83,7 @@ ul ul {
 }
 
 ul:not(:last-child) {
-  margin-bottom: var(--vii-spacing-paragraph);
+  margin-bottom: $spacing-30;
 }
 
 ul > li {
