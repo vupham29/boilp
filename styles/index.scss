@@ -1,5 +1,8 @@
 @import './base/reset.scss';
+
+// library
 @import '@viivue/atomic-css';
+@import './base/prism';
 
 @import './utils/variables';
 @import './utils/mixins';

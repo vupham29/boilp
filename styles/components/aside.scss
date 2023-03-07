@@ -1,7 +1,6 @@
 .lesson {
   &__aside {
     width: clamp(300px, 21vw, 400px);
-    height: 100vh;
     padding: 4rem;
     background: #212529;
     position: relative;
@@ -75,6 +74,7 @@
 
   &__content {
     width: 100%;
+    min-height: 100vh;
     padding: 6rem;
   }
 

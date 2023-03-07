@@ -3,6 +3,7 @@ import NotFound from './pages/NotFound/index';
 import Preloader from './components/Preloader';
 import Aside from "@/components/Aside";
 import "@viivue/easy-tab-accordion";
+import Prism from './components/Prism';
 
 class App{
     constructor(){
@@ -11,11 +12,16 @@ class App{
         this.createPreloader();
         this.createPages();
 
+        this.afterPageLoaded();
+    }
+
+    afterPageLoaded(){
         this.addEventListener();
         this.initEta();
         this.asideElement = new Aside();
-    }
 
+        Prism.highlightAll();
+    }
 
     // get content and template from different pages
     createContent(){
@@ -40,6 +46,7 @@ class App{
             if(!this.pages[this.template]){
                 import(`@/pages/${this.template}`)
                     .then((instance) => {
+                        console.log(instance);
                         this.pages[this.template] = new instance.default();
                         resolve();
                     });
@@ -86,9 +93,7 @@ class App{
                 this.page.create();
                 this.page.show();
 
-                this.initEta();
-                this.addLinksListener();
-                this.asideElement = new Aside();
+                this.afterPageLoaded();
             });
         }else{
             console.log("Error!");
