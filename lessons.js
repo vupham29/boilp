@@ -74,13 +74,4 @@ module.exports = createLessonsPrototype([
             }
         ]
     },
-    {
-        title: 'GL Shading Language',
-        base: 'glsl',
-        lessons: [
-            {
-                title: 'Drawing a single point'
-            },
-        ]
-    },
 ]);

@@ -20,7 +20,6 @@ export default class extends Page{
 
         import(`./${instanceName}.js`)
             .then((instance) => {
-                console.log(instance);
                 this.lesson = new instance.default({
                     el: this.element,
                     canvas: this.element.querySelector('#canvas')

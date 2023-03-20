@@ -3,7 +3,7 @@ import NotFound from './pages/NotFound/index';
 import Preloader from './components/Preloader';
 import Aside from "@/components/Aside";
 import "@viivue/easy-tab-accordion";
-import Prism from './components/Prism';
+import Prism from '@/components/Prism';
 
 class App{
     constructor(){
@@ -46,7 +46,6 @@ class App{
             if(!this.pages[this.template]){
                 import(`@/pages/${this.template}`)
                     .then((instance) => {
-                        console.log(instance);
                         this.pages[this.template] = new instance.default();
                         resolve();
                     });

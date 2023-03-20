@@ -10,5 +10,5 @@ block content
             include ../partials/aside
         .lesson__content
             block lesson_content
-                :markdown-id(linkify langPrefix="language-")
+                :markdown-it(linkify langPrefix="language-")
             canvas#canvas
