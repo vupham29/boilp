@@ -131,9 +131,13 @@ class App{
     }
 
     addLinksListener(){
-        const links = document.querySelectorAll('a');
+        const links = document.querySelectorAll('a:not([href^="#"])');
         links.forEach(link => {
             link.addEventListener('click', (e) => {
+
+                // external link
+                if(link.getAttribute('href') === link.href) return;
+
                 e.preventDefault();
 
                 const {href} = link;
