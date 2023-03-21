@@ -69,9 +69,6 @@ module.exports = createLessonsPrototype([
             {
                 title: 'Drawing a single point'
             },
-            {
-                title: 'WebGL Coordinate'
-            }
         ]
     },
 ]);
