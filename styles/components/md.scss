@@ -1,3 +1,4 @@
+li > code,
 p > code {
   padding: 0.2em 0.4em;
   margin: 0;
@@ -25,4 +26,12 @@ pre[class*=language-] {
 
 strong {
   font-weight: 700;
+}
+
+h1, h2 {
+  border-bottom: 1px solid rgba(139, 148, 158, 0.3);
+}
+
+h1 {
+  border-color: #ccc;
 }
