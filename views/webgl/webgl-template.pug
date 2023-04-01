@@ -1,0 +1,13 @@
+extends ../template
+
+block variables
+    - var template = base;
+
+block content
+    div(class="d-flex", data-page=`${id}`)
+        div(class="txt_color_white", data-aside)
+            a(href="/", class="go-back t") Back
+            include ../partials/aside
+        div(data-content)
+            block content
+                :markdown-it(linkify langPrefix='language-')
