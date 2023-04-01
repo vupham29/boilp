@@ -11,6 +11,9 @@ export default class Preloader extends Component{
             }
         });
 
+        // element doesn't exist
+        if(!this.element) return;
+
         this.length = 0;
 
         this.splitText();

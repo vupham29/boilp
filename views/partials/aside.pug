@@ -11,5 +11,5 @@ aside
                         each page in lesson.lessons
                             li(class="menu-item")
                                 a(href=`${lesson.base}/${page.id}`, class = page.id === id ? 'active' : '')=page.title
-.close(class="close fl-center ps-absolute c-pointer t") &times;
+.close(class="fl-center ps-absolute c-pointer t", data-close) &times;
 

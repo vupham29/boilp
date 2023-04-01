@@ -4,33 +4,36 @@ import GSAP from "gsap";
 export default class Aside extends Component{
     constructor(){
         super({
-            element: ".lesson__aside .close",
+            element: "[data-page] [data-aside]",
+            elements: {
+                close: '[data-aside] [data-close]'
+            }
         });
+
         this.isOpen = true;
         this.createEventListener();
 
-        this.aside = this.element.closest('.lesson__aside');
-
         // create GSAP
         this.timeline = this.createTimeline({
-            defaults: {durations: 0.8},
+            defaults: {durations: 0.5},
+            ease: 'Power1.easeIn',
             paused: true,
             onReverseComplete: () => {
-                this.aside.classList.remove('hide');
+                this.element.classList.remove('hide');
             }
         });
 
         // timeline start animation
-        this.timeline.to(this.aside, {
+        this.timeline.to(this.element, {
             width: 0,
             paddingLeft: 0,
             paddingRight: 0,
             onStart: () => {
-                this.aside.classList.add('hide');
+                this.element.classList.add('hide');
             }
         });
 
-        Array.from(this.element.closest('.lesson__aside').children).forEach(node => {
+        Array.from(this.element.children).forEach(node => {
             node.style.width = node.getBoundingClientRect().width + 'px';
         });
     }
@@ -52,10 +55,10 @@ export default class Aside extends Component{
     }
 
     createEventListener(){
-        this.element.addEventListener("click", this.toggleAside.bind(this));
+        this.elements.close.addEventListener("click", this.toggleAside.bind(this));
     }
 
     removeEventListener(){
-        this.element.removeEventListener("click", this.toggleAside.bind(this));
+        this.elements.close.removeEventListener("click", this.toggleAside.bind(this));
     }
 }

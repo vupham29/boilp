@@ -4,8 +4,8 @@ block variables
     - var template = 'home'
 
 block content
-    .home(class="d-flex lesson")
-        .home__aside(class="lesson__aside txt_color_white")
+    div(class="d-flex", data-page)
+        div(class="txt_color_white", data-aside)
             include ../partials/aside
-        .home__content(class="lesson__content")
-            h2 Homepage content (could be editable)
+        div(data-content)
+            h2 Homepage content

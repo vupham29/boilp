@@ -1,9 +1,10 @@
-.lesson {
-  &__aside {
-    width: clamp(300px, 21vw, 400px);
+[data-page] {
+  [data-aside] {
+    width: clamp(300px, 21vw, 350px);
     padding: 4rem;
-    background: #212529;
-    position: relative;
+    background: rgba(33, 37, 41, 0.94);
+    position: fixed;
+    height: 100%;
 
     h1 {
       font-size: 2.5rem;
@@ -72,13 +73,13 @@
     }
   }
 
-  &__content {
+  [data-content] {
     width: 100%;
     min-height: 100vh;
     padding: 6rem;
   }
 
-  .close {
+  [data-close] {
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
