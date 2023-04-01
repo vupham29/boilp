@@ -16,8 +16,11 @@ export default class Utils{
             }else{
                 this.element = document.querySelector(this.selector);
             }
-            this.elements = {};
 
+            // element doesn't exist
+            if(!this.element) return;
+
+            this.elements = {};
             for(const [key, entry] of Object.entries(this.selectorChildren)){
                 if(entry instanceof window.HTMLElement || entry instanceof window.NodeList || Array.isArray(entry)){
                     this.elements[key] = entry;
@@ -31,8 +34,8 @@ export default class Utils{
                     }
                 }
             }
-        }catch{
-            return false;
+        }catch(e){
+            throw new Error('Can not find an element, error message', e.message);
         }
     }
 }
