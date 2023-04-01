@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const uaParser = require("ua-parser-js");
+const ip = require('ip');
 
 // lessons
 const LESSONS = require("./lessons");
@@ -105,5 +106,5 @@ app.use((error, req, res, next) => {
 });
 
 app.listen(process.env.PORT, () => {
-    console.log(`Example app listening at http://localhost:${process.env.PORT}`);
+    console.log(`Example app listening at http://localhost:${process.env.PORT} - http://${ip.address()}:${process.env.PORT}`);
 });
