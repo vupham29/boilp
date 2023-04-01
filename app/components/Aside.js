@@ -36,6 +36,9 @@ export default class Aside extends Component{
         Array.from(this.element.children).forEach(node => {
             node.style.width = node.getBoundingClientRect().width + 'px';
         });
+
+        // toggle aside
+        this.toggleAside();
     }
 
     createTimeline(options){
