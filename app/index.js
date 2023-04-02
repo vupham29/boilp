@@ -81,6 +81,11 @@ class App{
             this.template = divContent.getAttribute('data-template');
 
             this.content.setAttribute('data-template', this.template);
+
+            // change title html
+            document.querySelector('head > title').innerHTML = div.querySelector('title').innerHTML;
+
+            // change content HTML
             this.content.innerHTML = divContent.innerHTML;
 
             if(push){
