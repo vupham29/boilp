@@ -26,6 +26,10 @@ app.use((req, res, next) => {
     app.locals.isTablet = ua.device.type === "tablet";
     app.locals.isMobile = ua.device.type === "mobile";
 
+    // page title
+    app.locals.pageTitle = 'Learning Template';
+
+    // preloader
     app.locals.preloader = {
         title: "Learning Template"
     };
