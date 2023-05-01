@@ -3,14 +3,14 @@ import Page from '@/classes/Page';
 export default class extends Page{
     constructor(){
         super({
-            element: '.lesson',
+            element: '[data-page]',
         });
     }
 
     create(){
         super.create();
 
-        this.id = this.element?.getAttribute('data-lesson');
+        this.id = this.element?.getAttribute('data-page');
 
         // not lessons page
         if(!this.id) return;
