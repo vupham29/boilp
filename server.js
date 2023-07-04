@@ -3,7 +3,6 @@ require("dotenv").config({path: ".env"});
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const uaParser = require("ua-parser-js");
 const ip = require('ip');
 
 // lessons
@@ -21,11 +20,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
-    const ua = uaParser(req.header["user-agent"]);
-    app.locals.isDesktop = ua.device.type === undefined;
-    app.locals.isTablet = ua.device.type === "tablet";
-    app.locals.isMobile = ua.device.type === "mobile";
-
     // page title
     app.locals.pageTitle = 'Learning Template';
 
