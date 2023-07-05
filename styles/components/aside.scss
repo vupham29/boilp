@@ -35,7 +35,7 @@
 
       li.active-base > a,
       li a.active {
-        color: $color-primary;
+        color: var(--color-primary);
       }
     }
 
@@ -58,14 +58,14 @@
           content: '-';
           position: absolute;
           font-size: 30px;
-          color: $color-primary;
+          color: var(--color-primary);
 
           // position
           top: 50%;
           right: 0;
           transform: translateY(-50%);
 
-          transition: $transition;
+          transition: all .3s ease;
         }
 
         &:after {
@@ -105,7 +105,7 @@
     }
 
     &:hover {
-      background: $color-primary;
+      background: var(--color-primary);
     }
   }
 }
@@ -120,14 +120,14 @@ ul.menu {
 
   // menu has children
   & li.menu-item-has-children {
-    background: $color-secondary;
+    background: var(--color-secondary);
     padding: 2rem;
     border-radius: 5px;
   }
 
   // li not last child
   & > li:not(:last-child) {
-    margin-bottom: $spacing-20;
+    margin-bottom: 2rem;
   }
 
   // permalink
@@ -138,7 +138,7 @@ ul.menu {
 
 // go back button
 a.go-back {
-  margin-bottom: $spacing-20;
+  margin-bottom: 2rem;
   display: block;
   text-decoration: none;
   position: relative;
