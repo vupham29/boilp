@@ -35,8 +35,9 @@ html(lang="en")
         link(href="main.css" rel="stylesheet")
         script(src="main.js", defer='')
 
-    body
-        //include ./partials/preloader
+    body(data-preloader=preloader ? '' : null)
+        if preloader
+            include ./partials/preloader
 
         .content#content(data-template=template)
             block content

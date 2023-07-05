@@ -1,16 +1,16 @@
 aside
-    h1=preloader.title
+    h1=preloader ? preloader.title : 'Please fill in the title'
     ul.menu(id="data-eta")
-        each lesson in lessons
-            - var activeClass = lesson.base === base ? 'active-base' : '';
-            li(class= lesson.lessons.length > 0 ? `menu-item menu-item-has-children fl-grid ${activeClass}` : `menu-item ${activeClass}`)
-                a(href=`${lesson.base}`)=lesson.title
-                if lesson.lessons.length > 0
-                    button.expand(data-eta-trigger=`${lesson.base}`)
-                    ul.sub-menu(data-eta-receiver=`${lesson.base}`, class="w100")
-                        each page in lesson.lessons
+        each page in pages
+            - var activeClass = page.base === base ? 'active-base' : '';
+            li(class= page.pages.length > 0 ? `menu-item menu-item-has-children fl-grid ${activeClass}` : `menu-item ${activeClass}`)
+                a(href=`${page.base}`)=page.title
+                if page.pages.length > 0
+                    button.expand(data-eta-trigger=`${page.base}`)
+                    ul.sub-menu(data-eta-receiver=`${page.base}`, class="w100")
+                        each pageChild in page.pages
                             li(class="menu-item")
-                                a(href=`${lesson.base}/${page.id}`, class = page.id === id ? 'active' : '')=page.title
+                                a(href=`${page.base}/${pageChild.id}`, class = pageChild.id === id ? 'active' : '')=pageChild.title
 .close(class="fl-center ps-absolute c-pointer t", data-close)
     span &times;
 

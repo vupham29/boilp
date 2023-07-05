@@ -5,8 +5,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const ip = require('ip');
 
-// lessons
-const LESSONS = require("./lessons");
+// Pages
+const PAGES = require("./pages");
 
 const app = express();
 
@@ -24,11 +24,11 @@ app.use((req, res, next) => {
     app.locals.pageTitle = 'Learning Template';
 
     // preloader
-    app.locals.preloader = {
-        title: "Learning Template"
-    };
+    // app.locals.preloader = {
+    //     title: "Learning Template"
+    // };
 
-    app.locals.lessons = LESSONS;
+    app.locals.pages = PAGES;
     next();
 });
 
@@ -47,15 +47,15 @@ app.get('/:base', (req, res, next) => {
         return next(new Error(`Not found the base`));
     }
 
-    const baseResult = LESSONS.find(lesson => lesson.base === base);
+    const baseResult = PAGES.find(page => page.base === base);
 
     // not found the base
     if(!baseResult){
         return next(new Error(`Found the base but doesn't exist`));
     }
 
-    // render the first lesson
-    const result = baseResult.lessons[0];
+    // render the first page
+    const result = baseResult.pages[0];
 
     if(req.url.slice(-1) === '/') return res.redirect(`${result.id}`);
     res.redirect(`${base}/${result.id}`);
@@ -70,8 +70,8 @@ app.get("/:base/:id", (req, res, next) => {
         return next(new Error(`Not found base and id`));
     }
 
-    const baseResult = LESSONS.find(lesson => lesson.base === base);
-    const lessonResult = baseResult.lessons.find(lesson => lesson.id === id);
+    const baseResult = PAGES.find(page => page.base === base);
+    const pageResult = baseResult.pages.find(page => page.id === id);
 
     // not found the base
     if(!baseResult){
@@ -79,14 +79,14 @@ app.get("/:base/:id", (req, res, next) => {
     }
 
     // not found the ID
-    if(!lessonResult){
+    if(!pageResult){
         return next(new Error(`Found the base but ID doesn't exist`));
     }
 
-    res.render(`${base}/${lessonResult.id}`, {
-        title: lessonResult.title,
+    res.render(`${base}/${pageResult.id}`, {
+        title: pageResult.title,
         base: base,
-        id: lessonResult.id,
+        id: pageResult.id,
     });
 });
 
@@ -97,6 +97,7 @@ app.use((req, res, next) => {
 
 // Not found page
 app.use((error, req, res, next) => {
+    console.log(error);
     res.render("pages/404", {
         title: 'OOPS! \n' + '404 PAGE NOT FOUND',
         message: 'The page you’re looking for does not exist or has been removed.\n' + 'You can proceed to our Homepage.',

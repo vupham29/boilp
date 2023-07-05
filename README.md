@@ -16,7 +16,7 @@ With all the best, hope you like it
 
 ### Step 1:
 
-- Add new lesson in `lessons.js` (you can duplicate the old one)
+- Add new lesson in `pages.js` (you can duplicate the old one)
 
 ![Step 1](./shared/ezgif-1-a5d377d49b.gif)
 

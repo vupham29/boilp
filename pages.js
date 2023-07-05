@@ -1,17 +1,17 @@
 const {isPathExistSync, cloneFile, createDirectory} = require("./utils/utils");
 const path = require('path');
 
-const createLessonsPrototype = (lessons = []) => lessons.map(lesson => {
-    const {lessons: pages} = lesson;
+const createPagesPrototype = (prototypes = []) => prototypes.map(prototype => {
+    const {pages} = prototype;
 
-    const appPath = path.join('app', 'pages', lesson.base);
-    const pugPath = path.join('views', lesson.base);
+    const appPath = path.join('app', 'pages', prototype.base);
+    const pugPath = path.join('views', prototype.base);
 
     pages.forEach((page, i) => {
         if(!page.id){
-            page.id = `${lesson.base}-${('0' + (i + 1)).slice(-2)}`;
+            page.id = `${prototype.base}-${('0' + (i + 1)).slice(-2)}`;
         }
-        const templateName = `${lesson.base}-template`;
+        const templateName = `${prototype.base}-template`;
 
         // template doesn't exist => simply return, not create the prototype for it
         if(!isPathExistSync(appPath, templateName, '.js')){
@@ -58,14 +58,14 @@ const createLessonsPrototype = (lessons = []) => lessons.map(lesson => {
         }); // pug file
     });
 
-    return lesson;
+    return prototype;
 });
 
-module.exports = createLessonsPrototype([
+module.exports = createPagesPrototype([
     {
         title: 'WebGL Fundamentals',
         base: 'webgl',
-        lessons: [
+        pages: [
             {
                 title: 'Drawing a single point'
             },
