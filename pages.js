@@ -1,11 +1,14 @@
 const {isPathExistSync, cloneFile, createDirectory} = require("./utils/utils");
 const path = require('path');
 
+const {VIEW_ENGINE} = require('./utils/configs');
+const extensionEngine = '.' + VIEW_ENGINE;
+
 const createPagesPrototype = (prototypes = []) => prototypes.map(prototype => {
     const {pages} = prototype;
 
     const appPath = path.join('app', 'pages', prototype.base);
-    const pugPath = path.join('views', prototype.base);
+    const viewEnginePath = path.join('views', prototype.base);
 
     pages.forEach((page, i) => {
         if(!page.id){
@@ -38,37 +41,37 @@ const createPagesPrototype = (prototypes = []) => prototypes.map(prototype => {
             destination: path.join(appPath, page.id + '.js')
         }); // app file
 
-        // pug template
-        if(!isPathExistSync(pugPath, templateName, '.pug')){
+        // view engine template
+        if(!isPathExistSync(viewEnginePath, templateName, extensionEngine)){
             // create directory first
-            createDirectory(pugPath);
+            createDirectory(viewEnginePath);
 
             // template path
-            const templatePath = path.join(pugPath, '..', 'template');
+            const templatePath = path.join(viewEnginePath, '..', 'template');
 
             cloneFile({
-                source: path.join(templatePath, 'template.pug'),
-                destination: path.join(pugPath, templateName + '.pug')
+                source: path.join(templatePath, `template${extensionEngine}`),
+                destination: path.join(viewEnginePath, templateName + extensionEngine)
             });
         }
 
         cloneFile({
-            source: path.join(pugPath, templateName + '.pug'),
-            destination: path.join(pugPath, page.id + '.pug')
-        }); // pug file
+            source: path.join(viewEnginePath, templateName + extensionEngine),
+            destination: path.join(viewEnginePath, page.id + extensionEngine)
+        }); // engine file
     });
 
     return prototype;
 });
 
 module.exports = createPagesPrototype([
-    {
-        title: 'WebGL Fundamentals',
-        base: 'webgl',
-        pages: [
-            {
-                title: 'Drawing a single point'
-            },
-        ]
-    },
+    // {
+    //     title: 'WebGL Fundamentals',
+    //     base: 'webgl',
+    //     pages: [
+    //         {
+    //             title: 'Drawing a single point'
+    //         },
+    //     ]
+    // },
 ]);

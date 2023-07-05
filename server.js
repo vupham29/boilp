@@ -11,7 +11,8 @@ const PAGES = require("./pages");
 const app = express();
 
 // set views engine
-app.set("view engine", "pug");
+app.set("view engine", "ejs");
+app.set('views', 'views');
 
 // parse incoming data request
 app.use(bodyParser.urlencoded({extended: false}));
@@ -24,9 +25,9 @@ app.use((req, res, next) => {
     app.locals.pageTitle = 'Learning Template';
 
     // preloader
-    // app.locals.preloader = {
-    //     title: "Learning Template"
-    // };
+    app.locals.preloader = {
+        title: "Learning Template"
+    };
 
     app.locals.pages = PAGES;
     next();
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 
 // Home Page
 app.get("/", (req, res) => {
+    console.log('homepage');
     res.render("pages/home", {
         title: "Home",
     });
