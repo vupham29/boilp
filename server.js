@@ -25,9 +25,9 @@ app.use((req, res, next) => {
     app.locals.pageTitle = 'Learning Template';
 
     // preloader
-    app.locals.preloader = {
-        title: "Learning Template"
-    };
+    // app.locals.preloader = {
+    //     title: "Learning Template"
+    // };
 
     app.locals.pages = PAGES;
     next();
