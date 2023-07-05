@@ -3,7 +3,6 @@ import NotFound from './pages/NotFound/index';
 import Preloader from './components/Preloader';
 import Aside from "@/components/Aside";
 import "@viivue/easy-tab-accordion";
-import Prism from '@/components/Prism';
 
 class App{
     constructor(){
@@ -17,15 +16,13 @@ class App{
 
     afterPageLoaded(){
         this.addEventListener();
-        this.initEta();
-        this.asideElement = new Aside();
-
-        Prism.highlightAll();
+        // this.initEta();
+        // this.asideElement = new Aside();
     }
 
     // get content and template from different pages
     createContent(){
-        this.content = document.querySelector('.content');
+        this.content = document.querySelector('.site-content');
         this.template = this.content.getAttribute('data-template'); // this.content.dataset.template is the equivalent but not supported for Safari
     }
 
