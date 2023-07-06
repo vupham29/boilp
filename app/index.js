@@ -1,5 +1,4 @@
 import Preloader from './components/Preloader';
-import Aside from "@/components/Aside";
 import './components/theme.min';
 
 class App{
@@ -14,8 +13,6 @@ class App{
 
     afterPageLoaded(){
         this.addEventListener();
-        // this.initEta();
-        // this.asideElement = new Aside();
     }
 
     // get content and template from different pages
@@ -100,22 +97,6 @@ class App{
 
     onPopState(){
         this.handlePageChange({url: window.location.pathname, push: false});
-    }
-
-    /**
-     * Init ETA
-     * */
-    initEta(){
-        const getActiveSection = () => {
-            const allList = document.querySelectorAll('aside ul.menu > li');
-            return Array.from(allList).findIndex(li => li.classList.contains('active-base'));
-        };
-
-        // generate ETA
-        ETA.init({
-            el: this.content.querySelector('#data-eta'),
-            activeSection: getActiveSection()
-        });
     }
 
     /**
