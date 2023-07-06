@@ -65,13 +65,13 @@ const createPagesPrototype = (prototypes = []) => prototypes.map(prototype => {
 });
 
 module.exports = createPagesPrototype([
-    {
-        title: 'WebGL Fundamentals',
-        base: 'webgl',
-        pages: [
-            {
-                title: 'Drawing a single point'
-            },
-        ]
-    },
+    // {
+    //     title: 'WebGL Fundamentals',
+    //     base: 'webgl',
+    //     pages: [
+    //         {
+    //             title: 'Drawing a single point'
+    //         },
+    //     ]
+    // },
 ]);

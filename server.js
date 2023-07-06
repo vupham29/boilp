@@ -35,7 +35,6 @@ app.use((req, res, next) => {
 
 // Home
 app.get("/", (req, res) => {
-    console.log('homepage');
     res.render("pages/home", {
         title: "Home",
     });

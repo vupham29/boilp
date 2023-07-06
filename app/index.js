@@ -1,6 +1,7 @@
 import Preloader from './components/Preloader';
 import Aside from "@/components/Aside";
 import "@viivue/easy-tab-accordion";
+import './components/theme.min';
 
 class App{
     constructor(){
