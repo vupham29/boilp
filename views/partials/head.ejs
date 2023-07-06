@@ -21,7 +21,7 @@
 <% const classes = typeof isHome !== 'undefined' ? 'home' : 'single-page' %>
 <body class="<%= classes %>" <%= typeof preloader !== "undefined" ? 'data-preloader' : null %>>
 
-<!-- Preloader -->
 <% if (typeof preloader !== "undefined") { %>
+    <!-- Preloader -->
     <%- include('./preloader.ejs') %>
 <% } %>
