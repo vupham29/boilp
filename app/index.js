@@ -1,39 +1,31 @@
-import Home from './pages/Home/index';
-import NotFound from './pages/NotFound/index';
 import Preloader from './components/Preloader';
 import Aside from "@/components/Aside";
 import "@viivue/easy-tab-accordion";
-import Prism from '@/components/Prism';
 
 class App{
     constructor(){
         this.createContent();
 
         this.createPreloader();
-        this.createPages();
+        this.createPage();
 
         this.afterPageLoaded();
     }
 
     afterPageLoaded(){
         this.addEventListener();
-        this.initEta();
-        this.asideElement = new Aside();
-
-        Prism.highlightAll();
+        // this.initEta();
+        // this.asideElement = new Aside();
     }
 
     // get content and template from different pages
     createContent(){
-        this.content = document.querySelector('.content');
+        this.content = document.querySelector('.site-content');
         this.template = this.content.getAttribute('data-template'); // this.content.dataset.template is the equivalent but not supported for Safari
     }
 
-    createPages(){
-        this.pages = {
-            home: new Home(),
-            error: new NotFound(),
-        };
+    createPage(){
+        this.pages = {};
 
         this.dynamicImportPage().then(() => {
             this.page = this.pages[this.template];
@@ -79,7 +71,7 @@ class App{
             const div = document.createElement('div');
 
             div.innerHTML = html;
-            const divContent = div.querySelector('.content');
+            const divContent = div.querySelector('[data-template]');
             this.template = divContent.getAttribute('data-template');
 
             this.content.setAttribute('data-template', this.template);

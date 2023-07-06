@@ -11,7 +11,8 @@ const PAGES = require("./pages");
 const app = express();
 
 // set views engine
-app.set("view engine", "pug");
+app.set("view engine", "ejs");
+app.set('views', 'views');
 
 // parse incoming data request
 app.use(bodyParser.urlencoded({extended: false}));
@@ -32,8 +33,9 @@ app.use((req, res, next) => {
     next();
 });
 
-// Home Page
+// Home
 app.get("/", (req, res) => {
+    console.log('homepage');
     res.render("pages/home", {
         title: "Home",
     });
@@ -86,7 +88,7 @@ app.get("/:base/:id", (req, res, next) => {
     res.render(`${base}/${pageResult.id}`, {
         title: pageResult.title,
         base: base,
-        id: pageResult.id,
+        pageId: pageResult.id,
     });
 });
 

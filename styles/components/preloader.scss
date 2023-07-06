@@ -1,6 +1,6 @@
 .preloader {
-  background: $color-primary;
-  font-size: $size-h2;
+  background: var(--color-primary);
+  font-size: var(--size-h2);
 
   overflow: hidden;
 
@@ -10,7 +10,7 @@
   }
 
   &__text {
-    margin-bottom: $spacing-60;
+    margin-bottom: 6rem;
     line-height: 1.3;
   }
 }

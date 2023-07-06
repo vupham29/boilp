@@ -1,0 +1,27 @@
+<aside>
+    <h1><%= pageTitle; %></h1>
+    <ul class="menu" data-eta>
+        <% pages.forEach(page => {
+            const activeClass = page.base === base ? 'active-base' : '';
+            const liParentClass = page.pages.length > 0 ? 'menu-item-has-children' : '';
+        %>
+        <li class="menu-item <%= liParentClass %> <%= activeClass %>">
+            <a href="<%= page.base %>"><%= page.title %></a>
+
+            <% if (page.pages.length > 0) { %>
+                <button class="expand" data-eta-trigger="<%= page.base %>"></button>
+                <ul class="sub-menu w100" data-eta-receiver="<%= page.base %>">
+                    <% page.pages.forEach(childPage => { %>
+                        <li class="menu-item">
+                            <a href="<%= `${page.base}/${childPage.id}` %>"><%= childPage.title %></a>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+        </li>
+        <% }); %>
+    </ul>
+</aside>
+<div class="close fl-center ps-absolute c-pointer t" data-close>
+    <span>&times;</span>
+</div>

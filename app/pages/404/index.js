@@ -7,8 +7,4 @@ export default class extends Page{
             element: '.error',
         });
     }
-
-    create(){
-        super.create();
-    }
 }
