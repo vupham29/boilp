@@ -98,10 +98,9 @@ app.use((req, res, next) => {
 
 // Not found page
 app.use((error, req, res, next) => {
-    console.log(error);
     res.render("pages/404", {
         title: 'OOPS! \n' + '404 PAGE NOT FOUND',
-        message: 'The page you’re looking for does not exist or has been removed.\n' + 'You can proceed to our Homepage.',
+        message: 'The page you’re looking for does not exist or has been removed.\n' + 'You can proceed to our <a href="/">home page</a>.',
     });
 });
 

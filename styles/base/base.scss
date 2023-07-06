@@ -7,14 +7,16 @@
 }
 
 body {
-  color: var(--color-text);
+  min-height: 100vh;
   background: var(--color-bg);
+  position: relative;
+
+  color: var(--color-text);
   font-size: var(--size-body);
   font-family: var(--font-primary);
   line-height: 1.4;
   font-weight: 400;
   letter-spacing: 0.01em;
-  position: relative;
 }
 
 .container {
