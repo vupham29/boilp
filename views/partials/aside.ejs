@@ -1,5 +1,5 @@
 <aside class="site-sidebar ps-fixed">
-    <div class="site-sidebar__inner h100 bar10px overflow-auto ps-relative">
+    <div class="site-sidebar__inner h100 bar10px overflow-auto ps-relative z2">
         <% pages.forEach(page => { %>
             <div class="site-sidebar__item">
                 <div class="site-sidebar__item-title ps-relative fl-center-v bar10px"><%= page.title; %></div>
@@ -8,7 +8,7 @@
                     <div class="site-sidebar__children">
                         <% page.pages.forEach(childPage => { %>
                             <a href="<%= `${page.base}/${childPage.id}`; %>"
-                               class="site-sidebar__child-item td-none fl-center-v txt_color_white overflow-hidden ab-full-b ps-relative">
+                               class="site-sidebar__child-item td-none fl-center-v txt_color_white overflow-hidden ps-relative hover-with-background">
                                 <%= childPage.title; %>
                             </a>
                         <% }); %>
@@ -17,4 +17,15 @@
             </div>
         <% }); %>
     </div>
+
+    <!-- Toggle button -->
+    <button class="site-sidebar__button hover-with-background ps-absolute r0 z3 c-pointer" data-toggle="sidebar">
+        <span class="site-sidebar__bar d-block ab-center-v"></span>
+        <span class="site-sidebar__bar d-block ab-center-v"></span>
+        <span class="site-sidebar__bar d-block ab-center-v"></span>
+        <span class="site-sidebar__bar d-block ab-center-v curve"></span>
+        <span class="site-sidebar__bar d-block ab-center-v curve"></span>
+    </button>
+    <!-- Overlay -->
+    <div class="site-sidebar__overlay ps-fixed t0 l0 r0 b0 z1" data-toggle="sidebar"></div>
 </aside>

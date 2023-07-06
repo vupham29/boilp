@@ -17,7 +17,9 @@
 
     <script src="/main.js" defer></script>
 </head>
-<body <%= typeof preloader !== "undefined" ? 'data-preloader' : null %>>
+
+<% const classes = typeof isHome !== 'undefined' ? 'home' : 'single-page' %>
+<body class="<%= classes %>" <%= typeof preloader !== "undefined" ? 'data-preloader' : null %>>
 
 <!-- Preloader -->
 <% if (typeof preloader !== "undefined") { %>
