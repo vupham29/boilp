@@ -3,20 +3,17 @@
 // library
 @import '@viivue/atomic-css';
 
-@import './utils/variables';
+@import './utils/variables.css';
 @import './utils/mixins';
-@import './utils/vendors';
 @import './utils/responsive';
 
 @import './base/font';
 @import './base/base';
+@import './base/typo';
 
 // components
 @import './components/preloader';
 @import './components/aside';
-
-// layout
-@import './layout/navigation';
 
 // pages
 @import './pages/home';

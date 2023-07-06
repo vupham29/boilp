@@ -1,6 +1,5 @@
-// CSS Variables
 :root {
-  // colors
+  /* Colors */
   --color-bg: #fff;
   --color-text: #000;
   --color-heading: var(--color-text);
@@ -33,16 +32,18 @@
   /* Relative font sizes */
   --size-body: var(--size-16);
   --size-h1: var(--size-50);
-  --size-h2: var(--size-35);
-  --size-h3: var(--size-20);
-  --size-h4: var(--size-17);
-  --size-h5: var(--size-16);
-  --size-h6: var(--size-16);
-
+  --size-h2:var(--size-35);
+  --size-h3:var(--size-20);
+  --size-h4:var(--size-17);
+  --size-h5:var(--size-16);
+  --size-h6:var(--size-16);
 
   /* Fonts */
-  --font-primary: 'Plus Jakarta Sans';
+  --font-primary:"Plus Jakarta Sans";
 
   /* Container */
-  --container: 118rem;
+  --100vw:100vw;
+  --container:118rem;
+  --gap-container:4rem;
+  --gap-side:calc((var(--100vw) - var(--container)) * 0.5);
 }
