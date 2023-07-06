@@ -64,14 +64,32 @@ const createPagesPrototype = (prototypes = []) => prototypes.map(prototype => {
     return prototype;
 });
 
-module.exports = createPagesPrototype([
-    // {
-    //     title: 'WebGL Fundamentals',
-    //     base: 'webgl',
-    //     pages: [
-    //         {
-    //             title: 'Drawing a single point'
-    //         },
-    //     ]
-    // },
-]);
+module.exports = [
+    {
+        title: 'WebGL Fundamentals',
+        base: 'webgl',
+        pages: [
+            {
+                title: 'Drawing a single point'
+            },
+            {
+                title: 'Page 02'
+            },
+            {
+                title: 'Page 03'
+            }
+        ]
+    },
+    {
+        title: 'GLSL',
+        base: 'glsl',
+        pages: [
+            {
+                title: 'GLSL 01'
+            },
+            {
+                title: 'GLSL 02'
+            }
+        ]
+    }
+];

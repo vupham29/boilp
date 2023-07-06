@@ -39,7 +39,8 @@
   --size-h6:var(--size-16);
 
   /* Fonts */
-  --font-primary:"Plus Jakarta Sans";
+  --font-primary:"Roboto";
+  --font-secondary:"Hindsiliguri";
 
   /* Container */
   --100vw:100vw;
