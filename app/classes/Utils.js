@@ -1,9 +1,7 @@
 export default class Utils{
-    constructor({element, elements}){
+    constructor({element, elements = []}){
         this.selector = element;
-        this.selectorChildren = {
-            ...elements
-        };
+        this.selectorChildren = elements;
 
         // create DOM elements
         this.create();

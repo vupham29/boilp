@@ -33,7 +33,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Home Page
+// Home
 app.get("/", (req, res) => {
     console.log('homepage');
     res.render("pages/home", {
@@ -88,7 +88,7 @@ app.get("/:base/:id", (req, res, next) => {
     res.render(`${base}/${pageResult.id}`, {
         title: pageResult.title,
         base: base,
-        id: pageResult.id,
+        pageId: pageResult.id,
     });
 });
 
