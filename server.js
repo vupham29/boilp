@@ -22,11 +22,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
     // page title
-    app.locals.pageTitle = 'Learning Template';
+    app.locals.pageTitle = 'Pages Template';
 
     // preloader
     // app.locals.preloader = {
-    //     title: "Learning Template"
+    //     title: "Pages Template"
     // };
 
     app.locals.pages = PAGES;
