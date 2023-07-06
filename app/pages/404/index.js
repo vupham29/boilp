@@ -4,7 +4,7 @@ export default class extends Page{
     constructor(){
         super({
             id: 'error',
-            element: '.error',
+            element: '[data-template]',
         });
     }
 }

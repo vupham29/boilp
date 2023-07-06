@@ -17,7 +17,7 @@ class App{
 
     // get content and template from different pages
     createContent(){
-        this.content = document.querySelector('.site-content');
+        this.content = document.querySelector('[data-template]');
         this.template = this.content.getAttribute('data-template'); // this.content.dataset.template is the equivalent but not supported for Safari
     }
 
@@ -71,14 +71,14 @@ class App{
             const divContent = div.querySelector('[data-template]');
             this.template = divContent.getAttribute('data-template');
 
-            this.content.setAttribute('data-template', this.template);
-
             // change title html
             document.querySelector('head > title').innerHTML = div.querySelector('title').innerHTML;
 
             // change content HTML
-            this.content.innerHTML = divContent.innerHTML;
+            this.content.outerHTML = divContent.outerHTML;
+            this.content = document.querySelector('[data-template]');
 
+            // push to popstate
             if(push){
                 window.history.pushState({}, '', url);
             }
@@ -107,17 +107,22 @@ class App{
         this.addLinksListener();
 
         // handlePopstate
-        window.addEventListener('popstate', this.onPopState.bind(this));
+        if(!this.handlePopstateChange){
+            this.handlePopstateChange = this.onPopState.bind(this);
+            window.addEventListener('popstate', this.handlePopstateChange);
+        }
+    }
+
+    removeLastEventListener(){
+        window.removeEventListener('popstate', this.handlePopstateChange);
     }
 
     addLinksListener(){
         const links = document.querySelectorAll('a:not([href^="#"])');
         links.forEach(link => {
             link.addEventListener('click', (e) => {
-
                 // external link
                 if(link.getAttribute('href') === link.href) return;
-
                 e.preventDefault();
 
                 const {href} = link;
