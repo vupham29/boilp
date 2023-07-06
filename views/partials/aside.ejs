@@ -1,27 +1,20 @@
-<aside>
-    <h1><%= pageTitle; %></h1>
-    <ul class="menu" data-eta>
-        <% pages.forEach(page => {
-            const activeClass = page.base === base ? 'active-base' : '';
-            const liParentClass = page.pages.length > 0 ? 'menu-item-has-children' : '';
-        %>
-        <li class="menu-item <%= liParentClass %> <%= activeClass %>">
-            <a href="<%= page.base %>"><%= page.title %></a>
+<aside class="site-sidebar ps-fixed">
+    <div class="site-sidebar__inner h100 bar10px overflow-auto ps-relative">
+        <% pages.forEach(page => { %>
+            <div class="site-sidebar__item">
+                <div class="site-sidebar__item-title ps-relative fl-center-v bar10px"><%= page.title; %></div>
 
-            <% if (page.pages.length > 0) { %>
-                <button class="expand" data-eta-trigger="<%= page.base %>"></button>
-                <ul class="sub-menu w100" data-eta-receiver="<%= page.base %>">
-                    <% page.pages.forEach(childPage => { %>
-                        <li class="menu-item">
-                            <a href="<%= `${page.base}/${childPage.id}` %>"><%= childPage.title %></a>
-                        </li>
-                    <% }) %>
-                </ul>
-            <% } %>
-        </li>
+                <% if (page.pages.length > 0) { %>
+                    <div class="site-sidebar__children">
+                        <% page.pages.forEach(childPage => { %>
+                            <a href="<%= `${page.base}/${childPage.id}`; %>"
+                               class="site-sidebar__child-item td-none fl-center-v txt_color_white overflow-hidden ab-full-b ps-relative">
+                                <%= childPage.title; %>
+                            </a>
+                        <% }); %>
+                    </div>
+                <% } %>
+            </div>
         <% }); %>
-    </ul>
+    </div>
 </aside>
-<div class="close fl-center ps-absolute c-pointer t" data-close>
-    <span>&times;</span>
-</div>

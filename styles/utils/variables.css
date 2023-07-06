@@ -1,14 +1,14 @@
 :root {
   /* Colors */
-  --color-bg: #fff;
-  --color-text: #000;
-  --color-heading: var(--color-text);
-  --color-permalink: var(--color-text);
-  --color-permalink-highlight: #fff;
+  --color-bg:#fff;
+  --color-text:#000;
+  --color-heading:var(--color-text);
+  --color-permalink:var(--color-text);
+  --color-permalink-highlight:#fff;
 
-  --color-primary: #ffcb08;
-  --color-primary-highlight: #c69d07;
-  --color-on-primary: #fff;
+  --color-primary:#32ffce;
+  --color-primary-highlight:#c69d07;
+  --color-on-primary:#fff;
 
   --color-secondary:#1864ab;
   --color-secondary-highlight:#e0e0e0;
