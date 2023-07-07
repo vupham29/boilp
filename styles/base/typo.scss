@@ -47,6 +47,11 @@ p {
   margin-bottom: 3rem;
 }
 
+/* clear bottom spacing */
+.boil-content :last-child {
+  margin-bottom: 0;
+}
+
 /* Default unordered list for text block */
 ul {
   list-style: none;

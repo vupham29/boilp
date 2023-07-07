@@ -1,0 +1,37 @@
+.site-banner {
+  --x: 50%;
+  --y: 50%;
+  --mask: radial-gradient(circle at var(--x) var(--y), black 25%, rgba(0, 0, 0, 0) 0);
+
+  background: #212529;
+  min-height: 100vh;
+  padding: 0 var(--gap-container);
+
+  // content
+  &__content {
+    color: #f8f9fa;
+    text-transform: uppercase;
+    font-family: var(--font-secondary);
+    font-size: clamp(30px, 6.5vw, 6.5vw);
+
+    padding-right: var(--gap-container);
+    width: 70%;
+
+    @include responsive('tablet') {
+      width: 100%;
+      font-size: 9vw;
+    }
+  }
+
+  // shape
+  &__shape {
+    width: 30%;
+    background: radial-gradient(circle at 70% 40%, #ccc, #000);
+
+    @include responsive('tablet') {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+
+}
