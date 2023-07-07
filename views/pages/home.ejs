@@ -1,15 +1,19 @@
 <%- include('../partials/head.ejs', {isHome: true}) %>
 
-<%- include('../partials/aside.ejs'); %>
+<%
+const title = 'Boil Template';
+%>
 
 <div class="site-content" data-template="home">
-    <div class="site-banner fl-center-v fw-wrap">
-        <div class="site-banner__content">
+    <div class="site-banner fl-center-v ps-relative">
+        <div class="site-banner__content boil-content">
+            <p><%= title; %></p>
+        </div>
+        <div class="site-banner__content site-banner__content--cursor ab-full fl-center-v">
             <div class="boil-content">
-                <p>Boilp Template</p>
+                <p><%= title; %></p>
             </div>
         </div>
-        <div class="site-banner__shape ar-1 bar-circle"></div>
     </div>
 </div>
 

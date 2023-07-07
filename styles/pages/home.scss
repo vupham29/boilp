@@ -12,26 +12,19 @@
     color: #f8f9fa;
     text-transform: uppercase;
     font-family: var(--font-secondary);
-    font-size: clamp(30px, 6.5vw, 6.5vw);
+    font-size: 8vw;
 
-    padding-right: var(--gap-container);
-    width: 70%;
+    // cursor
+    &--cursor {
+      --xPercent: 50%;
+      --yPercent: 50%;
+      --mask: radial-gradient(circle at var(--xPercent, 50%) var(--yPercent, 50%), var(--color-primary) 25%, rgba(0, 0, 0, 0) 0);
 
-    @include responsive('tablet') {
-      width: 100%;
-      font-size: 9vw;
+      background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+      padding: 0 var(--gap-container);
+      -webkit-mask: var(--mask);
+
+      color: #0e0e0e;
     }
   }
-
-  // shape
-  &__shape {
-    width: 30%;
-    background: radial-gradient(circle at 70% 40%, #ccc, #000);
-
-    @include responsive('tablet') {
-      width: 100%;
-      max-width: 300px;
-    }
-  }
-
 }
