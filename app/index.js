@@ -64,10 +64,17 @@ class App{
     }
 
     async handlePageChange({url, push = true}){
+        // animation
         await this.page.hide();
+
+        // fetch new page
         const request = await window.fetch(url);
 
         if(request.status === 200){
+            // destroy old page
+            this.page.destroy();
+
+            // get html of new page
             const html = await request.text();
             const div = document.createElement('div');
 
