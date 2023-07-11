@@ -42,3 +42,9 @@ body {
 .txt_color_white a:focus {
   color: var(--color-primary);
 }
+
+/* Make the section full width */
+.container .container-full-width {
+  margin-left: calc(-1 * var(--gap-side));
+  margin-right: calc(-1 * var(--gap-side));
+}
