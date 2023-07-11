@@ -1,7 +1,7 @@
 {
-  "name": "expressjs-boilerplate",
+  "name": "boilp",
   "version": "0.0.1",
-  "description": "An ExpressJS Boilerplate",
+  "description": "Creating multiple pages of web applications on the fly.",
   "main": "server.js",
   "scripts": {
     "backend:dev": "nodemon server.js",
