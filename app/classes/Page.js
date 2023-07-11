@@ -32,19 +32,10 @@ export default class Page extends Utils{
     }
 
     /**
-     Listeners.
-     */
-    addEventListeners(){
-    }
-
-    removeEventListeners(){
-    }
-
-    /**
-     * Destroy.
+     * Destroy when navigating between each page.
      */
     destroy(){
-        this.removeEventListeners();
+        console.log('destroy page:', this);
     }
 }
 

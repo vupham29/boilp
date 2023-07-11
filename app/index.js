@@ -1,5 +1,5 @@
 import Preloader from './components/Preloader';
-import './components/theme.min';
+import './vendors/theme/theme.min';
 
 class App{
     constructor(){
@@ -36,10 +36,14 @@ class App{
                 import(`@/pages/${this.template}`)
                     .then((instance) => {
                         this.pages[this.template] = new instance.default();
-                        resolve();
+                        resolve({
+                            hasExisted: false
+                        });
                     });
             }else{
-                resolve();
+                resolve({
+                    hasExisted: true
+                });
             }
         });
     }
@@ -60,10 +64,17 @@ class App{
     }
 
     async handlePageChange({url, push = true}){
+        // animation
         await this.page.hide();
+
+        // fetch new page
         const request = await window.fetch(url);
 
         if(request.status === 200){
+            // destroy old page
+            this.page.destroy();
+
+            // get html of new page
             const html = await request.text();
             const div = document.createElement('div');
 
@@ -83,11 +94,20 @@ class App{
                 window.history.pushState({}, '', url);
             }
 
-            this.dynamicImportPage().then(() => {
-                this.page = this.pages[this.template];
-                this.page.create();
+            this.dynamicImportPage().then((response) => {
+                if(!response.hasExisted){
+                    // not existed before
+                    // create the new one
+                    this.page = this.pages[this.template];
+                }else{
+                    // has existed
+                    this.page.create();
+                }
+
+                // animation
                 this.page.show();
 
+                // handle after page loaded
                 this.afterPageLoaded();
             });
         }else{
@@ -113,12 +133,8 @@ class App{
         }
     }
 
-    removeLastEventListener(){
-        window.removeEventListener('popstate', this.handlePopstateChange);
-    }
-
     addLinksListener(){
-        const links = document.querySelectorAll('a:not([href^="#"])');
+        const links = document.querySelectorAll('a:not([href^="#"]):not(.dynamic-link-enabled)');
         links.forEach(link => {
             link.addEventListener('click', (e) => {
                 // external link
@@ -128,6 +144,8 @@ class App{
                 const {href} = link;
                 this.handlePageChange({url: href});
             });
+
+            link.classList.add('dynamic-link-enabled');
         });
     }
 }

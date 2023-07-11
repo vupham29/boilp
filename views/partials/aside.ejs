@@ -8,7 +8,7 @@
                     <% if (page.pages.length > 0) { %>
                         <div class="site-sidebar__children">
                             <% page.pages.forEach(childPage => { %>
-                                <a href="<%= `${page.base}/${childPage.id}`; %>"
+                                <a href="<%= `/${page.base}/${childPage.id}`; %>"
                                    class="site-sidebar__child-item td-none fl-center-v txt_color_white overflow-hidden ps-relative hover-with-background">
                                     <%= childPage.title; %>
                                 </a>

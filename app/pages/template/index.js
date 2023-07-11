@@ -10,18 +10,24 @@ export default class extends Page{
     create(){
         super.create();
 
-        this.id = this.element?.getAttribute('data-page');
+        // dynamic import
+        this.id = this.element.getAttribute('data-page');
 
         // not lessons page
         if(!this.id) return;
+
+        // destroy last instance
+        if(this.instance){
+            this.instance.destroy();
+        }
 
         // create instance
         const instanceName = this.id;
 
         import(`./${instanceName}.js`)
             .then((instance) => {
-                this.page = new instance.default({
-                    el: this.element,
+                this.instance = new instance.default({
+                    element: this.element,
                 });
             });
     }
