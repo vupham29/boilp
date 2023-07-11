@@ -2,44 +2,58 @@ import Component from "@/classes/Component";
 import GSAP from "gsap";
 
 export default class Preloader extends Component{
-    constructor(){
+    constructor({
+                    onPreloaded = () => {
+                    }
+                }){
         super({
             element: ".preloader",
             elements: {
                 title: ".preloader__text",
                 images: document.querySelectorAll("img")
-            }
+            },
         });
 
         // element doesn't exist
         if(!this.element) return;
 
-        this.length = 0;
+        // init progress
+        this.progress = 0;
+        this.imagesLength = this.elements.images ? this.elements.images.length : 0;
 
+        // handle animation
         this.splitText();
         this.createLoader();
+
+        // callback
+        if(typeof onPreloaded === 'function'){
+            this.onPreloaded = onPreloaded;
+        }
     }
 
     createLoader(){
         // not images
-        if(!this.elements.images.length){
-            setTimeout(this.onLoaded.bind(this), 500);
+        if(!this.imagesLength){
+            this.onAssetLoaded(true);
             return;
         }
 
         this.elements.images.forEach(element => {
-            element.onload = () => this.onAssetLoaded(element);
+            element.onload = () => this.onAssetLoaded();
             element.src = element.getAttribute("data-src");
         });
     }
 
-    onAssetLoaded(){
-        this.length += 1;
+    onAssetLoaded(force = false){
+        this.progress += 1;
+        const percentage = this.progress / this.imagesLength;
 
-        const percentage = this.length / this.elements.images.length;
-
-        if(percentage === 1){
-            this.onLoaded();
+        // image loaded
+        if(percentage === 1 || force){
+            this.onLoaded().then(() => {
+                if(!this.onPreloaded) return;
+                this.onPreloaded();
+            });
         }
     }
 
@@ -52,13 +66,16 @@ export default class Preloader extends Component{
         return new Promise(resolve => {
             const tl = GSAP.timeline({
                 defaults: {
-                    ease: "power1.in"
+                    ease: "power1.in",
                 }
             });
             tl.to(this.elements.title.querySelectorAll("span span"), {
-                yPercent: 100
-            }).to(this.element, {
                 yPercent: 105
+            }).to(this.element, {
+                yPercent: 100,
+                onComplete: () => {
+                    resolve();
+                }
             });
         });
     }

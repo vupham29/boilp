@@ -88,6 +88,7 @@ app.get("/:base/:id", (req, res, next) => {
         title: pageResult.title,
         base: base,
         pageId: pageResult.id,
+        pageTitle: base[0].toUpperCase() + base.substring(1) // capitalize text
     });
 });
 
