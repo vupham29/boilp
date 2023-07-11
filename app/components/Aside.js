@@ -1,67 +1,26 @@
 import Component from "@/classes/Component";
-import GSAP from "gsap";
 
+/**
+ * Aside component
+ * */
 export default class Aside extends Component{
     constructor(){
-        super({
-            element: "[data-page] [data-aside]",
-            elements: {
-                close: '[data-aside] [data-close]'
-            }
-        });
+        super({element: '[data-aside]'});
 
-        this.isOpen = true;
-        this.createEventListener();
-
-        // create GSAP
-        this.timeline = this.createTimeline({
-            defaults: {durations: 0.5},
-            ease: 'Power1.easeIn',
-            paused: true,
-            onReverseComplete: () => {
-                this.element.classList.remove('hide');
-            }
-        });
-
-        // timeline start animation
-        this.timeline.to(this.element, {
-            width: 0,
-            paddingLeft: 0,
-            paddingRight: 0,
-            onStart: () => {
-                this.element.classList.add('hide');
-            }
-        });
-
-        Array.from(this.element.children).forEach(node => {
-            node.style.width = node.getBoundingClientRect().width + 'px';
-        });
-
-        // toggle aside
-        this.toggleAside();
+        this.element.addEventListener('click', this.toggleActiveClass.bind(this));
     }
 
-    createTimeline(options){
-        return GSAP.timeline({
-            ...options
-        });
-    }
+    toggleActiveClass(e){
+        const target = e.target.closest('a.site-sidebar__child-item');
+        if(!target) return;
 
-    toggleAside(){
-        if(this.isOpen){
-            this.timeline.play();
-            this.isOpen = false;
-        }else{
-            this.timeline.reverse();
-            this.isOpen = true;
-        }
-    }
+        const currentActiveLink = this.element.querySelector('a.site-sidebar__child-item.active');
 
-    createEventListener(){
-        this.elements.close.addEventListener("click", this.toggleAside.bind(this));
-    }
+        // same link => do nothing
+        if(currentActiveLink.isEqualNode(target)) return;
 
-    removeEventListener(){
-        this.elements.close.removeEventListener("click", this.toggleAside.bind(this));
+        // change active class
+        currentActiveLink.classList.remove('active');
+        target.classList.add('active');
     }
 }

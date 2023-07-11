@@ -1,14 +1,16 @@
 import Preloader from './components/Preloader';
 import '@/vendors/theme/theme.min';
+import Aside from "@/components/Aside";
 
 class App{
     constructor(){
         this.createContent();
-
         this.createPreloader();
         this.createPage();
-
         this.afterPageLoaded();
+
+        // init Aside
+        this.aside = new Aside();
     }
 
     afterPageLoaded(){
@@ -139,9 +141,17 @@ class App{
         const links = document.querySelectorAll('a:not([href^="#"]):not(.dynamic-link-enabled)');
         links.forEach(link => {
             link.addEventListener('click', (e) => {
+                const currentURL = new URL(location.href);
+                const linkURL = new URL(link.href);
+
                 // external link
-                if(link.getAttribute('href') === link.href) return;
+                if(currentURL.host !== linkURL.host) return;
+
+                // internal link
                 e.preventDefault();
+
+                // current page => no need to do anything
+                if(currentURL.href === linkURL.href) return;
 
                 const {href} = link;
                 this.handlePageChange({url: href});
