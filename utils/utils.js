@@ -40,23 +40,8 @@ const createDirectory = (path) => {
     }
 };
 
-
-/**
- * String to slug
- * */
-const stringToSlug = (string) => {
-    if(!string) return '';
-    return string.normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/đ/g, 'd').replace(/Đ/g, 'D')
-        .replace(/[^\w ]+/g, '')
-        .replace(/ +/g, '-')
-        .toLowerCase();
-};
-
 module.exports = {
     isPathExistSync,
     cloneFile,
-    createDirectory,
-    stringToSlug
+    createDirectory
 };

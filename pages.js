@@ -1,4 +1,4 @@
-const {isPathExistSync, cloneFile, createDirectory, stringToSlug} = require("./utils/utils");
+const {isPathExistSync, cloneFile, createDirectory} = require("./utils/utils");
 const path = require('path');
 
 const {VIEW_ENGINE} = require('./utils/configs');
@@ -11,15 +11,9 @@ const createPagesPrototype = (prototypes = []) => prototypes.map(prototype => {
     const viewEnginePath = path.join('views', prototype.base);
 
     pages.forEach((page, i) => {
-        // generate id
         if(!page.id){
             page.id = `${prototype.base}-${('0' + (i + 1)).slice(-2)}`;
         }
-
-        // generate slug
-        page.slug = stringToSlug(page.title);
-
-        // get template name
         const templateName = `${prototype.base}-template`;
 
         // template doesn't exist => simply return, not create the prototype for it
@@ -69,7 +63,6 @@ const createPagesPrototype = (prototypes = []) => prototypes.map(prototype => {
 
     return prototype;
 });
-
 
 module.exports = createPagesPrototype([
     // {
