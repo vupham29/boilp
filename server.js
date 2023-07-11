@@ -58,21 +58,21 @@ app.get('/:base', (req, res, next) => {
     // render the first page
     const result = baseResult.pages[0];
 
-    if(req.url.slice(-1) === '/') return res.redirect(`${result.id}`);
-    res.redirect(`${base}/${result.id}`);
+    if(req.url.slice(-1) === '/') return res.redirect(`${result.slug}`);
+    res.redirect(`${base}/${result.slug}`);
 });
 
-app.get("/:base/:id", (req, res, next) => {
+app.get("/:base/:slug", (req, res, next) => {
     const base = req.params.base;
-    const id = req.params.id;
+    const slug = req.params.slug;
 
-    // not exist base or id
-    if(!base || !id){
-        return next(new Error(`Not found base and id`));
+    // not exist base or slug
+    if(!base || !slug){
+        return next(new Error(`Not found base and slug`));
     }
 
     const baseResult = PAGES.find(page => page.base === base);
-    const pageResult = baseResult.pages.find(page => page.id === id);
+    const pageResult = baseResult.pages.find(page => page.slug === slug);
 
     // not found the base
     if(!baseResult){
@@ -88,6 +88,7 @@ app.get("/:base/:id", (req, res, next) => {
         title: pageResult.title,
         base: base,
         pageId: pageResult.id,
+        pageSlug: pageResult.slug
     });
 });
 
