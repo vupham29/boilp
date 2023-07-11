@@ -1,4 +1,4 @@
-const {isPathExistSync, cloneFile, createDirectory} = require("./utils/utils");
+const {isPathExistSync, cloneFile, createDirectory, stringToSlug} = require("./utils/utils");
 const path = require('path');
 
 const {VIEW_ENGINE} = require('./utils/configs');
@@ -12,9 +12,9 @@ const createPagesPrototype = (prototypes = []) => prototypes.map(prototype => {
 
     pages.forEach((page, i) => {
         if(!page.id){
-            page.id = `${prototype.base}-${('0' + (i + 1)).slice(-2)}`;
+            page.id = stringToSlug(page.title);
         }
-        const templateName = `${prototype.base}-template`;
+        const templateName = `template`;
 
         // template doesn't exist => simply return, not create the prototype for it
         if(!isPathExistSync(appPath, templateName, '.js')){
