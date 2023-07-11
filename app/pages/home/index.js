@@ -1,6 +1,6 @@
 import Page from '@/classes/Page';
-import './Position.min';
-import './smoothjs.min';
+import '@/vendors/position/Position.min';
+import '@/vendors/smooth/smoothjs.min';
 
 export default class Home extends Page{
     constructor(){

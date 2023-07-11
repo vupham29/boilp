@@ -1,5 +1,5 @@
 import Preloader from './components/Preloader';
-import './components/theme.min';
+import './vendors/theme/theme.min';
 
 class App{
     constructor(){
