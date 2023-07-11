@@ -85,7 +85,6 @@ class App{
 
             this.dynamicImportPage().then(() => {
                 this.page = this.pages[this.template];
-                this.page.create();
                 this.page.show();
 
                 this.afterPageLoaded();
