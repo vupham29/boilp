@@ -58,7 +58,7 @@ export default class Preloader extends Component{
             tl.to(this.elements.title.querySelectorAll("span span"), {
                 yPercent: 100
             }).to(this.element, {
-                y: "100%"
+                yPercent: 105
             });
         });
     }
