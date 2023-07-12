@@ -5,6 +5,9 @@ export default class extends Page{
         super({
             element: '[data-page]',
         });
+
+        // init variable
+        this.instance = null;
     }
 
     create(){
@@ -16,11 +19,6 @@ export default class extends Page{
         // not lessons page
         if(!this.id) return;
 
-        // destroy last instance
-        if(this.instance){
-            this.instance.destroy();
-        }
-
         // create instance
         const instanceName = this.id;
 
@@ -30,5 +28,13 @@ export default class extends Page{
                     element: this.element,
                 });
             });
+    }
+
+    destroy(){
+        // destroy last instance
+        if(this.instance){
+            this.instance.destroy();
+            this.instance = null;
+        }
     }
 }

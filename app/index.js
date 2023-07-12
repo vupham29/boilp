@@ -1,6 +1,6 @@
-import Preloader from './components/Preloader';
-import '@/vendors/theme/theme.min';
+import Preloader from '@/components/Preloader';
 import Aside from "@/components/Aside";
+import '@/components/theme.min';
 
 class App{
     constructor(){
@@ -9,7 +9,6 @@ class App{
         this.createPage();
         this.afterPageLoaded();
 
-        // init Aside
         this.aside = new Aside();
     }
 
@@ -27,26 +26,21 @@ class App{
         this.pages = {};
 
         this.dynamicImportPage().then(() => {
-            this.page = this.pages[this.template];
+            this.page = new this.pages[this.template].default();
         });
     }
 
     dynamicImportPage(){
         return new Promise((resolve) => {
-            // smart import
-            if(!this.pages[this.template]){
-                import(`@/pages/${this.template}`)
-                    .then((instance) => {
-                        this.pages[this.template] = new instance.default();
-                        resolve({
-                            hasExisted: false
-                        });
-                    });
-            }else{
-                resolve({
-                    hasExisted: true
+            // already exist
+            if(this.pages[this.template]) return resolve();
+
+            // dynamic import
+            import(`@/pages/${this.template}`)
+                .then((instance) => {
+                    this.pages[this.template] = instance;
+                    resolve();
                 });
-            }
         });
     }
 
@@ -62,7 +56,6 @@ class App{
     /**
      * Events
      * */
-
     onPreloaded(){
         this.preloader.destroy();
     }
@@ -98,15 +91,8 @@ class App{
                 window.history.pushState({}, '', url);
             }
 
-            this.dynamicImportPage().then((response) => {
-                if(!response.hasExisted){
-                    // not existed before
-                    // create the new one
-                    this.page = this.pages[this.template];
-                }else{
-                    // has existed
-                    this.page.create();
-                }
+            this.dynamicImportPage().then(() => {
+                this.page = new this.pages[this.template].default();
 
                 // animation
                 this.page.show();
