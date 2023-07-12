@@ -17,10 +17,10 @@ export default class Aside extends Component{
         const currentActiveLink = this.element.querySelector('a.site-sidebar__child-item.active');
 
         // same link => do nothing
-        if(currentActiveLink.isEqualNode(target)) return;
+        if(currentActiveLink && currentActiveLink.isEqualNode(target)) return;
 
         // change active class
-        currentActiveLink.classList.remove('active');
+        currentActiveLink?.classList.remove('active');
         target.classList.add('active');
     }
 }
