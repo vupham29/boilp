@@ -10,11 +10,11 @@
     "frontend:watch": "webpack-dev-server --config config/webpack.dev.js",
     "frontend:build": "webpack --config config/webpack.build.js",
     "start": "concurrently --kill-others \"npm run frontend:watch\" \"npm run backend:dev\"",
-    "build": "concurrently --kill-others \"npm run frontend:build\" \"npm run backend:build\""
+    "build": "npm run frontend:build && npm run backend:build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vuquangpham/expressjs-boilerplate.git"
+    "url": "git+https://github.com/vuquangpham/boilp.git"
   },
   "keywords": [
     "expressjs",
@@ -24,9 +24,9 @@
   "author": "Vu Pham",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vuquangpham/expressjs-boilerplate/issues"
+    "url": "https://github.com/vuquangpham/boilp/issues"
   },
-  "homepage": "https://github.com/vuquangpham/expressjs-boilerplate#readme",
+  "homepage": "https://github.com/vuquangpham/boilp#readme",
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
