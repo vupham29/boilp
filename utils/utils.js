@@ -21,7 +21,6 @@ const cloneFile = ({
                    }) => {
     if(isPathExistSync(destination)) return;
     fs.copyFile(source, destination, (err) => {
-        console.log(err);
         if(err){
             callback(false);
             return;
