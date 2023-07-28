@@ -1,6 +1,6 @@
 import Preloader from '@/components/Preloader';
 import Aside from "@/components/Aside";
-import '@/components/theme.min';
+import '@/vendors/theme/theme.min';
 
 class App{
     constructor(){

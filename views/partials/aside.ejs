@@ -1,5 +1,5 @@
 <% if (pages.length > 0) { %>
-    <aside class="site-sidebar ps-fixed">
+    <aside data-aside class="site-sidebar ps-fixed z99999999">
         <div class="site-sidebar__inner h100 bar10px overflow-auto ps-relative z2">
             <% pages.forEach(page => { %>
                 <div class="site-sidebar__item">
@@ -8,8 +8,12 @@
                     <% if (page.pages.length > 0) { %>
                         <div class="site-sidebar__children">
                             <% page.pages.forEach(childPage => { %>
+
+                                <!-- Add active class -->
+                                <% const activeClass = typeof pageId !== "undefined" && childPage.id === pageId ? "active" : '' %>
+
                                 <a href="<%= `/${page.base}/${childPage.id}`; %>"
-                                   class="site-sidebar__child-item td-none fl-center-v txt_color_white overflow-hidden ps-relative hover-with-background">
+                                   class="site-sidebar__child-item td-none fl-center-v txt_color_white overflow-hidden ps-relative hover-with-background <%= activeClass %>">
                                     <%= childPage.title; %>
                                 </a>
                             <% }); %>

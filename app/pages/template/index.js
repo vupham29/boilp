@@ -22,7 +22,7 @@ export default class extends Page{
         // create instance
         const instanceName = this.id;
 
-        import(`./${instanceName}.js`)
+        import(`./${instanceName}`)
             .then((instance) => {
                 this.instance = new instance.default({
                     element: this.element,

@@ -35,10 +35,13 @@ const createPagesPrototype = (prototypes = []) => prototypes.map(prototype => {
             });
         }
 
+        // create directory
+        createDirectory(path.join(appPath, page.id));
+
         // clone the template for the new-id
         cloneFile({
             source: path.join(appPath, templateName + '.js'),
-            destination: path.join(appPath, page.id + '.js')
+            destination: path.join(appPath, page.id, 'index' + '.js')
         }); // app file
 
         // view engine template

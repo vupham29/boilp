@@ -5,7 +5,13 @@ const path = require('path');
  * Check folder exist
  * */
 const isPathExistSync = (directoryPath, folderName, extension = '') => {
+    // check directory path
     if(!folderName && !extension) return fs.existsSync(directoryPath);
+
+    // check with folder
+    if(!extension) return fs.existsSync(path.join(directoryPath, folderName));
+
+    // fully check
     return fs.existsSync(path.join(directoryPath, folderName + extension));
 };
 
@@ -58,10 +64,4 @@ module.exports = {
     cloneFile,
     createDirectory,
     stringToSlug
-};
-
-module.exports = {
-    isPathExistSync,
-    cloneFile,
-    createDirectory
 };
