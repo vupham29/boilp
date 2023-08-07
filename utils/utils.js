@@ -6,13 +6,7 @@ const {VIEW_ENGINE} = require('./configs');
  * Check folder exist
  * */
 const isPathExistSync = (directoryPath, folderName, extension = '') => {
-    // check directory path
     if(!folderName && !extension) return fs.existsSync(directoryPath);
-
-    // check with folder
-    if(!extension) return fs.existsSync(path.join(directoryPath, folderName));
-
-    // fully check
     return fs.existsSync(path.join(directoryPath, folderName + extension));
 };
 
@@ -26,7 +20,13 @@ const cloneFile = ({
                        callback = () => {
                        }
                    }) => {
+    // destination already exist => not run
     if(isPathExistSync(destination)) return;
+
+    // source doesn't exist
+    if(!isPathExistSync(source)) return;
+
+    // clone file
     fs.copyFile(source, destination, (err) => {
         if(err){
             callback(false);
@@ -60,7 +60,6 @@ const stringToSlug = (string) => {
         .toLowerCase();
 };
 
-
 /**
  * Create pages prototype
  * */
@@ -71,7 +70,7 @@ const createPagesPrototype = (prototypes = []) => prototypes.map(prototype => {
     const appPath = path.join('app', 'pages', prototype.base);
     const viewEnginePath = path.join('views', prototype.base);
 
-    pages.forEach((page, i) => {
+    pages.forEach((page) => {
         if(!page.id){
             page.id = stringToSlug(page.title);
         }
