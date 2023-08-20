@@ -40,7 +40,7 @@ const copyFile = (source = '', destination = '') => {
         if(!fs.existsSync(source)) return resolve('The source doesn\'t exist');
 
         // clone file
-        fs.copyFile(source, destination, (err) => err ? reject(err) : resolve);
+        fs.copyFile(source, destination, (err) => err ? resolve(err.message) : resolve(true));
     });
 };
 
