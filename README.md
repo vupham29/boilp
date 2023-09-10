@@ -2,6 +2,8 @@
 
 > Creating multiple pages of web applications on the fly 💨
 
+Edit the `pages.js` only, the boilerplate will automatically create the view-engine file and script file.
+
 ## Deployment
 
 Run `./public` in dev mode
