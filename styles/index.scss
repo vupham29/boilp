@@ -1,7 +1,7 @@
 @import './base/reset.scss';
 
-// library
-@import './atomic/atomic';
+// libs
+@import "@viivue/atomic-css";
 
 @import './utils/variables.css';
 @import './utils/mixins';
