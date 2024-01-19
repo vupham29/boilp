@@ -2,7 +2,7 @@ Have a first look at https://threejs-journey-ruddy.vercel.app/
 
 # Boilp Templates
 
-Create multiple pages application on the fly
+Create multiple pages applications on the fly
 
 ## What we do?
 
@@ -26,7 +26,7 @@ It will automatically create for you 2 separate files in `app/pages/slug/` and `
 
 ## Examples
 
-Depends on your work. I create this templates to control my learning journey at the beginning (because I have to create each file for each lesson 😒), so I just wanna control all in one place
+Depends on your work. I created this template to control my learning journey at the beginning (because I have to create each file for each lesson 😒), so I just wanna control it all in one place
 
 I have 2 examples below:
 
