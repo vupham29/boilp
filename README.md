@@ -8,17 +8,17 @@ Create multiple pages application on the fly
 
 To create a page, just edit the `pages.js` file with the syntax
 
-```shell
+```js
 module.exports = createPagesPrototype([
-    {
-        title: 'The category name',
-        base: 'category-in-slug',
-        pages: [
-            {
-                title: 'Title of a single page'
-            },
-        ]
-    },
+  {
+    title: "The category name",
+    base: "category-in-slug",
+    pages: [
+      {
+        title: "Title of a single page",
+      },
+    ],
+  },
 ]);
 ```
 
