@@ -33,6 +33,8 @@ I have 2 examples below:
 - [Three.js Journey](https://threejs-journey-ruddy.vercel.app/) - my learning journey in Three.js, control all lessons in one place :)
 - [Creative Corners](https://creative-coding-delta.vercel.app/) - my creative corners, I can do all the creative things in my mind in one place :)
 
+You can follow the [simple repository here](https://github.com/vuquangpham/threejs-journey)
+
 ## Deployment
 
 Run `./public` in dev mode
