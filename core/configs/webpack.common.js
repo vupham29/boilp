@@ -3,10 +3,10 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const dirApp = path.join(__dirname, "..", "app");
-const dirStyles = path.join(__dirname, "..", "styles");
-const dirShared = path.join(__dirname, "..", "shared");
-const dirPublic = path.join(__dirname, "..", "public");
+const dirApp = path.join(process.cwd(), "app");
+const dirStyles = path.join(process.cwd(), "styles");
+const dirShared = path.join(process.cwd(), "shared");
+const dirPublic = path.join(process.cwd(), "public");
 
 module.exports = {
   entry: [path.join(dirApp, "index.js"), path.join(dirStyles, "index.scss")],
