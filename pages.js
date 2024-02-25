@@ -1,4 +1,4 @@
-const { createPagesPrototype } = require("./utils/utils");
+const { createPagesPrototype } = require("./core/utils/utils");
 module.exports = createPagesPrototype([
   // {
   //     title: 'WebGL Fundamentals',

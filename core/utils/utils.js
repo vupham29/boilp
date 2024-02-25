@@ -28,14 +28,15 @@ const stringToSlug = (string) => {
 const createJsBase = (appPath, baseName, pageId) => {
   // check if folder exist or not
   const baseDirectory = path.join(appPath, baseName);
+  const coreDirectory = path.join(process.cwd(), "core");
 
   isPathExistAsync(baseDirectory)
     .catch(async () => {
       // create directory
       createDirectory(baseDirectory);
       const defaultTemplateDirectory = path.join(
-        baseDirectory,
-        "..",
+        coreDirectory,
+        "app",
         "template"
       );
 
@@ -54,7 +55,6 @@ const createJsBase = (appPath, baseName, pageId) => {
         path.join(baseDirectory, "template.js")
       );
       if (result === true) return;
-      console.log(result);
     })
     .finally(() => {
       // create pageId folder
@@ -82,6 +82,7 @@ const createJsBase = (appPath, baseName, pageId) => {
 const createEngineBase = (appPath, baseName, pageId) => {
   // check if folder exist or not
   const baseDirectory = path.join(appPath, baseName);
+  const coreDirectory = path.join(process.cwd(), "core");
 
   isPathExistAsync(baseDirectory)
     .catch(async () => {
@@ -90,8 +91,8 @@ const createEngineBase = (appPath, baseName, pageId) => {
 
       // template path
       const defaultTemplateDirectory = path.join(
-        baseDirectory,
-        "..",
+        coreDirectory,
+        "views",
         "template"
       );
       const result = await copyFile(
@@ -99,7 +100,6 @@ const createEngineBase = (appPath, baseName, pageId) => {
         path.join(baseDirectory, "template.ejs")
       );
       if (result === true) return;
-      console.log(result);
     })
     .finally(() => {
       // create pageId file
