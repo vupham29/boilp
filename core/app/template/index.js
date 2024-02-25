@@ -1,40 +1,47 @@
-import Page from '@/classes/Page';
+import Page from "@/classes/Page";
 
-export default class extends Page{
-    constructor(){
-        super({
-            element: '[data-page]',
+export default class extends Page {
+  constructor() {
+    super({
+      element: "[data-page]",
+    });
+
+    // init variable
+    this.instance = null;
+  }
+
+  create() {
+    super.create();
+
+    // dynamic import
+    this.id = this.element.getAttribute("data-page");
+
+    // not lessons page
+    if (!this.id) return;
+
+    // create instance
+    const instanceName = this.id;
+
+    import(`./${instanceName}`).then((instance) => {
+      try {
+        // instance is class base
+        this.instance = new instance.default({
+          element: this.element,
         });
+      } catch (error) {
+        // just js file
+        this.instance = instance;
+      }
+    });
+  }
 
-        // init variable
-        this.instance = null;
+  destroy() {
+    // destroy last instance
+    if (this.instance && this.instance.destroy) {
+      this.instance.destroy();
     }
 
-    create(){
-        super.create();
-
-        // dynamic import
-        this.id = this.element.getAttribute('data-page');
-
-        // not lessons page
-        if(!this.id) return;
-
-        // create instance
-        const instanceName = this.id;
-
-        import(`./${instanceName}`)
-            .then((instance) => {
-                this.instance = new instance.default({
-                    element: this.element,
-                });
-            });
-    }
-
-    destroy(){
-        // destroy last instance
-        if(this.instance){
-            this.instance.destroy();
-            this.instance = null;
-        }
-    }
+    // clear instance
+    this.instance = null;
+  }
 }
