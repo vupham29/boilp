@@ -20,11 +20,8 @@ class App {
     this.template = this.content.getAttribute("data-template");
 
     // create aside menu
-    try {
-      this.aside = new Aside();
-    } catch (error) {
-      //   console.error("Aside doesn't exist");
-    }
+    const asideElement = document.querySelector("[data-aside]");
+    if (asideElement) this.aside = new Aside(asideElement);
   }
 
   createPage() {
