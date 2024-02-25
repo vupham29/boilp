@@ -1,20 +1,19 @@
-@import './base/reset.scss';
+@import "./base/reset.scss";
 
 // libs
 @import "@viivue/atomic-css";
 
-@import './utils/variables.css';
-@import './utils/mixins';
-@import './utils/responsive';
+@import "./utils/variables";
+@import "./utils/mixins";
+@import "./utils/responsive";
 
-@import './base/font';
-@import './base/base';
-@import './base/typo';
+@import "./base/font";
+@import "./base/base";
+@import "./base/typo";
 
 // components
-@import './components/preloader';
-@import './components/aside';
+@import "./components/aside";
 
 // pages
-@import './pages/home';
-@import './pages/404';
+@import "./pages/home";
+@import "./pages/404";
