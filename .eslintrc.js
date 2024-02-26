@@ -22,6 +22,9 @@ module.exports = {
     // single or double quotes
     quotes: [1, "double"],
 
+    // not using var
+    "no-var": ["error"],
+
     // semi colon
     semi: [2, "always"],
 
