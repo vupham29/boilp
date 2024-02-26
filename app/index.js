@@ -117,7 +117,7 @@ class App {
 
   addLinksListener() {
     const links = document.querySelectorAll(
-      "a:not([href^=\"#\"]):not(.dynamic-link-enabled)"
+      'a:not([href^="#"]):not(.dynamic-link-enabled)'
     );
     links.forEach((link) => {
       link.addEventListener("click", (e) => {
