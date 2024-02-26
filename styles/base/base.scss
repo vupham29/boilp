@@ -49,3 +49,16 @@ body {
   margin-left: calc(-1 * var(--gap-side));
   margin-right: calc(-1 * var(--gap-side));
 }
+
+/* for code embedded */
+pre {
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  margin-bottom: 20px;
+  padding: 20px;
+
+  font-size: var(--size-body);
+  font-family: monospace;
+}

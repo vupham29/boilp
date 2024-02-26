@@ -1,6 +1,7 @@
-a, button {
+a,
+button {
   color: var(--color-text);
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 a:hover,
@@ -9,9 +10,14 @@ a:focus {
 }
 
 /* Headings */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--color-heading);
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   display: block;
   font-family: var(--font-secondary);
   line-height: 1.3;
@@ -44,7 +50,7 @@ h6 {
 }
 
 p {
-  margin-bottom: 3rem;
+  margin-bottom: 20px;
 }
 
 /* clear bottom spacing */
@@ -59,7 +65,7 @@ ul {
 }
 
 ul ul {
-  padding-top: 1.5rem;
+  padding-top: 15px;
 }
 
 ul:not(:last-child) {
@@ -67,7 +73,7 @@ ul:not(:last-child) {
 }
 
 ul > li {
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 20px;
   position: relative;
 }
 
@@ -78,7 +84,7 @@ ul > li:not(:last-child) {
 ul > li:before {
   content: "";
   position: absolute;
-  top: .5em;
+  top: 0.5em;
   left: 0;
   width: 4px;
   height: 4px;

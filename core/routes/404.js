@@ -1,5 +1,4 @@
 const errorHandler = (error, _, response, next) => {
-  console.log("hre", error);
   response.render("pages/404", {
     title: "OOPS! \n" + "404 PAGE NOT FOUND",
     message:
