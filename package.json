@@ -10,7 +10,7 @@
     "frontend:build": "webpack --config core/configs/webpack.build.js",
     "start": "concurrently --kill-others \"npm run backend:dev\" \"npm run frontend:dev\"",
     "build": "npm run frontend:build && npm run backend:build",
-    "build:vercel": "npm run backend:build"
+    "lint": "eslint \"**/*.js\""
   },
   "repository": {
     "type": "git",
