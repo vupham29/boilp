@@ -23,7 +23,7 @@ export default class Aside extends Component {
 
   setActivePosition() {
     const activeElement = this.element.querySelector(
-      "[data-aside-link].active"
+      "[data-aside-link].active",
     );
 
     // no active element
@@ -50,7 +50,9 @@ export default class Aside extends Component {
     this.setActivePosition();
 
     // not active page
-    if (!this.activeId || !this.activeSlug) {return;}
+    if (!this.activeId || !this.activeSlug) {
+      return;
+    }
 
     // get top position of the active
     const distanceOfActiveElmToTop = this.activeElm.offsetTop;
@@ -71,14 +73,18 @@ export default class Aside extends Component {
 
   toggleActiveClass(e) {
     const target = e.target.closest("[data-aside-link]");
-    if (!target) {return;}
+    if (!target) {
+      return;
+    }
 
     const currentActiveLink = this.element.querySelector(
-      "[data-aside-link].active"
+      "[data-aside-link].active",
     );
 
     // same link => do nothing
-    if (currentActiveLink && currentActiveLink.isEqualNode(target)) {return;}
+    if (currentActiveLink && currentActiveLink.isEqualNode(target)) {
+      return;
+    }
 
     // change active class
     currentActiveLink?.classList.remove("active");
