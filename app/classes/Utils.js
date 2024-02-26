@@ -16,8 +16,9 @@ export default class Utils {
       }
 
       // element doesn't exist
-      if (!this.element)
-        this.catchError(new Error("Can not find an element", e.message));
+      if (!this.element) {
+        this.catchError(new Error("Can not find an element"));
+      }
 
       this.elements = {};
       for (const [key, entry] of Object.entries(this.selectorChildren)) {

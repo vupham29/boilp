@@ -1,4 +1,4 @@
-const router = require("express").Router();
+const router = require("express").Router(); // eslint-disable-line
 
 // pages
 const PAGES = require("../../pages");
@@ -9,7 +9,7 @@ router.get("/:base/:id", (request, response, next) => {
 
   // not exist base or id
   if (!base || !id) {
-    return next(new Error(`Not found base and id`));
+    return next(new Error("Not found base and id"));
   }
 
   const baseResult = PAGES.find((page) => page.base === base);
@@ -17,12 +17,12 @@ router.get("/:base/:id", (request, response, next) => {
 
   // not found the base
   if (!baseResult) {
-    return next(new Error(`Found the base but doesn't exist`));
+    return next(new Error("Found the base but doesn't exist"));
   }
 
   // not found the ID
   if (!pageResult) {
-    return next(new Error(`Found the base but ID doesn't exist`));
+    return next(new Error("Found the base but ID doesn't exist"));
   }
 
   response.render(`${base}/${pageResult.id}`, {

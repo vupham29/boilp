@@ -17,15 +17,18 @@ export default class extends Page {
     this.id = this.element.getAttribute("data-page");
 
     // not lessons page
-    if (!this.id) return;
+    if (!this.id) {
+      return;
+    }
 
     // create instance
     const instanceName = this.id;
 
     import(`./${instanceName}`).then((instance) => {
       try {
+        const Page = instance.default;
         // instance is class base
-        this.instance = new instance.default({
+        this.instance = new Page({
           element: this.element,
         });
       } catch (error) {

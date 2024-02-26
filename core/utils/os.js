@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 /**
  * Check file exist or nor in async way
@@ -6,11 +6,11 @@ const fs = require('fs');
  * @return {Promise}
  * */
 const isPathExistAsync = async(file) => {
-    return new Promise((resolve, reject) => {
-        fs.promises.access(file, fs.constants.F_OK)
-            .then(resolve)
-            .catch(reject);
-    });
+  return new Promise((resolve, reject) => {
+    fs.promises.access(file, fs.constants.F_OK)
+      .then(resolve)
+      .catch(reject);
+  });
 };
 
 /**
@@ -19,9 +19,9 @@ const isPathExistAsync = async(file) => {
  * @return {void}
  * */
 const createDirectory = (path) => {
-    if(!fs.existsSync(path)){
-        fs.mkdirSync(path);
-    }
+  if(!fs.existsSync(path)){
+    fs.mkdirSync(path);
+  }
 };
 
 
@@ -31,21 +31,21 @@ const createDirectory = (path) => {
  * @param destination {string}
  * @return {Promise}
  * */
-const copyFile = (source = '', destination = '') => {
-    return new Promise((resolve) => {
-        // destination already exist => not run
-        if(fs.existsSync(destination)) return resolve('The destination has already existed yet - ' + destination);
+const copyFile = (source = "", destination = "") => {
+  return new Promise((resolve) => {
+    // destination already exist => not run
+    if(fs.existsSync(destination)) {return resolve("The destination has already existed yet - " + destination);}
 
-        // source doesn't exist
-        if(!fs.existsSync(source)) return resolve('The source doesn\'t exist - ' + source);
+    // source doesn't exist
+    if(!fs.existsSync(source)) {return resolve("The source doesn't exist - " + source);}
 
-        // clone file
-        fs.copyFile(source, destination, (err) => err ? resolve(err.message) : resolve(true));
-    });
+    // clone file
+    fs.copyFile(source, destination, (err) => err ? resolve(err.message) : resolve(true));
+  });
 };
 
 module.exports = {
-    isPathExistAsync,
-    createDirectory,
-    copyFile
+  isPathExistAsync,
+  createDirectory,
+  copyFile
 };
