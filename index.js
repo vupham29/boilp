@@ -1,4 +1,4 @@
-// Packages
+// packages
 require("dotenv").config({ path: ".env" });
 const express = require("express");
 const path = require("path");
@@ -7,6 +7,12 @@ const ip = require("ip");
 
 // pages
 const PAGES = require("./pages");
+
+// routes
+const homeRoute = require("./core/routes/home");
+const errorRoute = require("./core/routes/404");
+const baseRoute = require("./core/routes/base");
+const baseWithIdRoute = require("./core/routes/baseWithId");
 
 // init app
 const app = express();
@@ -21,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // load static file
 app.use(express.static(path.join(__dirname, "public")));
 
+// middleware
 app.use((req, res, next) => {
   app.locals.pageTitle = "Pages Template";
   app.locals.pages = PAGES;
@@ -28,80 +35,19 @@ app.use((req, res, next) => {
   next();
 });
 
-// Home
-app.get("/", (req, res) => {
-  res.render("pages/home", {
-    title: "Home",
-  });
-});
+// home
+app.use(homeRoute);
 
-app.get("/:base", (req, res, next) => {
-  const base = req.params.base;
+// base without id
+app.use(baseRoute);
 
-  // not exist base
-  if (!base) {
-    return next(new Error(`Not found the base`));
-  }
+// base with id
+app.use(baseWithIdRoute);
 
-  const baseResult = PAGES.find((page) => page.base === base);
+// not found page
+app.use(errorRoute);
 
-  // not found the base
-  if (!baseResult) {
-    return next(new Error(`Found the base but doesn't exist`));
-  }
-
-  // render the first page
-  const result = baseResult.pages[0];
-
-  if (req.url.slice(-1) === "/") return res.redirect(`${result.id}`);
-  res.redirect(`${base}/${result.id}`);
-});
-
-app.get("/:base/:id", (req, res, next) => {
-  const base = req.params.base;
-  const id = req.params.id;
-
-  // not exist base or id
-  if (!base || !id) {
-    return next(new Error(`Not found base and id`));
-  }
-
-  const baseResult = PAGES.find((page) => page.base === base);
-  const pageResult = baseResult.pages.find((page) => page.id === id);
-
-  // not found the base
-  if (!baseResult) {
-    return next(new Error(`Found the base but doesn't exist`));
-  }
-
-  // not found the ID
-  if (!pageResult) {
-    return next(new Error(`Found the base but ID doesn't exist`));
-  }
-
-  res.render(`${base}/${pageResult.id}`, {
-    title: pageResult.title,
-    base: base,
-    pageId: pageResult.id,
-    pageTitle: base[0].toUpperCase() + base.substring(1), // capitalize text
-  });
-});
-
-// Error Handler
-app.use((req, res, next) => {
-  next(new Error("URL doesn't exist"));
-});
-
-// Not found page
-app.use((error, req, res, next) => {
-  res.render("pages/404", {
-    title: "OOPS! \n" + "404 PAGE NOT FOUND",
-    message:
-      "The page you’re looking for does not exist or has been removed.\n" +
-      'You can proceed to our <a href="/">home page</a>.',
-  });
-});
-
+// start the server
 app.listen(process.env.PORT, () => {
   console.log(
     `Example app listening at http://localhost:${
