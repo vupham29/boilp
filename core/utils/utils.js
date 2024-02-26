@@ -7,7 +7,9 @@ const { isPathExistAsync, createDirectory, copyFile } = require("./os");
  * @return {string}
  * */
 const stringToSlug = (string) => {
-  if (!string) return "";
+  if (!string) {
+    return "";
+  }
   return string
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -28,33 +30,37 @@ const stringToSlug = (string) => {
 const createJsBase = (appPath, baseName, pageId) => {
   // check if folder exist or not
   const baseDirectory = path.join(appPath, baseName);
+  const coreDirectory = path.join(process.cwd(), "core");
 
   isPathExistAsync(baseDirectory)
     .catch(async () => {
       // create directory
       createDirectory(baseDirectory);
       const defaultTemplateDirectory = path.join(
-        baseDirectory,
-        "..",
-        "template"
+        coreDirectory,
+        "app",
+        "template",
       );
 
       // create index.js file
       copyFile(
         path.join(defaultTemplateDirectory, "index.js"),
-        path.join(baseDirectory, "index.js")
+        path.join(baseDirectory, "index.js"),
       ).then((result) => {
-        if (result === true) return;
+        if (result === true) {
+          return;
+        }
         console.log(result);
       });
 
       // create template.js file
       const result = await copyFile(
         path.join(defaultTemplateDirectory, "template.js"),
-        path.join(baseDirectory, "template.js")
+        path.join(baseDirectory, "template.js"),
       );
-      if (result === true) return;
-      console.log(result);
+      if (result === true) {
+        return;
+      }
     })
     .finally(() => {
       // create pageId folder
@@ -64,9 +70,11 @@ const createJsBase = (appPath, baseName, pageId) => {
       // create pageId file
       copyFile(
         path.join(baseDirectory, "template.js"),
-        path.join(pageIdDirectory, "index.js")
+        path.join(pageIdDirectory, "index.js"),
       ).then((result) => {
-        if (result === true) return;
+        if (result === true) {
+          return;
+        }
         console.log(result);
       });
     });
@@ -82,6 +90,7 @@ const createJsBase = (appPath, baseName, pageId) => {
 const createEngineBase = (appPath, baseName, pageId) => {
   // check if folder exist or not
   const baseDirectory = path.join(appPath, baseName);
+  const coreDirectory = path.join(process.cwd(), "core");
 
   isPathExistAsync(baseDirectory)
     .catch(async () => {
@@ -90,24 +99,27 @@ const createEngineBase = (appPath, baseName, pageId) => {
 
       // template path
       const defaultTemplateDirectory = path.join(
-        baseDirectory,
-        "..",
-        "template"
+        coreDirectory,
+        "views",
+        "template",
       );
       const result = await copyFile(
         path.join(defaultTemplateDirectory, "template.ejs"),
-        path.join(baseDirectory, "template.ejs")
+        path.join(baseDirectory, "template.ejs"),
       );
-      if (result === true) return;
-      console.log(result);
+      if (result === true) {
+        return;
+      }
     })
     .finally(() => {
       // create pageId file
       copyFile(
         path.join(baseDirectory, "template.ejs"),
-        path.join(baseDirectory, pageId + ".ejs")
+        path.join(baseDirectory, pageId + ".ejs"),
       ).then((result) => {
-        if (result === true) return;
+        if (result === true) {
+          return;
+        }
         console.log(result);
       });
     });
