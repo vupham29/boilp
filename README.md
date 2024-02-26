@@ -1,4 +1,4 @@
-Have a first look at https://threejs-journey-ruddy.vercel.app/
+Take a first look at https://threejs-journey-ruddy.vercel.app/
 
 # Boilp Templates
 
