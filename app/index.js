@@ -21,21 +21,26 @@ class App {
 
     // create aside menu
     const asideElement = document.querySelector("[data-aside]");
-    if (asideElement) this.aside = new Aside(asideElement);
+    if (asideElement) {
+      this.aside = new Aside(asideElement);
+    }
   }
 
   createPage() {
     this.pages = {};
 
     this.dynamicImportPage().then(() => {
-      this.page = new this.pages[this.template].default();
+      const Page = this.pages[this.template].default;
+      this.page = new Page();
     });
   }
 
   dynamicImportPage() {
     return new Promise((resolve) => {
       // already exist
-      if (this.pages[this.template]) return resolve();
+      if (this.pages[this.template]) {
+        return resolve();
+      }
 
       // dynamic import
       import(`@/pages/${this.template}`).then((instance) => {
@@ -78,7 +83,8 @@ class App {
       }
 
       this.dynamicImportPage().then(() => {
-        this.page = new this.pages[this.template].default();
+        const Page = this.pages[this.template].default;
+        this.page = new Page();
 
         // animation
         this.page.show();
@@ -119,13 +125,17 @@ class App {
         const linkURL = new URL(link.href);
 
         // external link
-        if (currentURL.host !== linkURL.host) return;
+        if (currentURL.host !== linkURL.host) {
+          return;
+        }
 
         // internal link
         e.preventDefault();
 
         // current page => no need to do anything
-        if (currentURL.href === linkURL.href) return;
+        if (currentURL.href === linkURL.href) {
+          return;
+        }
 
         const { href } = link;
         this.handlePageChange({ url: href });
