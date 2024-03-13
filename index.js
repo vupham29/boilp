@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const ip = require("ip");
+const logger = require("morgan");
 
 // pages
 const PAGES = require("./pages");
@@ -20,6 +21,9 @@ const app = express();
 // set views engine
 app.set("view engine", "ejs");
 app.set("views", "views");
+
+// logger
+app.use(logger("dev"));
 
 // parse incoming data request
 app.use(bodyParser.urlencoded({ extended: false }));
