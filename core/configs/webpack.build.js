@@ -14,12 +14,6 @@ module.exports = merge(common, {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            ['@babel/preset-env', {targets: "defaults"}]
-                        ],
-                        plugins: ['@babel/plugin-proposal-class-properties']
-                    }
                 }
             },
             {
@@ -34,15 +28,6 @@ module.exports = merge(common, {
                     },
                     {
                         loader: "postcss-loader",
-                        options: {
-                            postcssOptions: {
-                                plugins: [
-                                    require('postcss-preset-env')({
-                                        browsers: 'last 2 versions',
-                                    }),
-                                ],
-                            },
-                        },
                     },
                 ],
             },
@@ -58,15 +43,6 @@ module.exports = merge(common, {
                     },
                     {
                         loader: "postcss-loader",
-                        options: {
-                            postcssOptions: {
-                                plugins: [
-                                    require('postcss-preset-env')({
-                                        browsers: 'last 2 versions',
-                                    }),
-                                ],
-                            },
-                        },
                     },
                     {
                         loader: "sass-loader",
