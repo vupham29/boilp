@@ -5,6 +5,7 @@ export default class Page extends Utils {
   constructor({ element, elements, id }) {
     super({ element, elements });
 
+    // generate id
     this.id = id;
   }
 

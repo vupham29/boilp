@@ -1,5 +1,5 @@
 export default class Utils {
-  constructor({ element, elements = [] }) {
+  constructor({ element, elements = {} }) {
     this.selector = element;
     this.selectorChildren = elements;
 
@@ -22,19 +22,23 @@ export default class Utils {
 
       this.elements = {};
       for (const [key, entry] of Object.entries(this.selectorChildren)) {
+        // entry is a NodeList or Element
         if (
           entry instanceof window.HTMLElement ||
           entry instanceof window.NodeList ||
           Array.isArray(entry)
         ) {
           this.elements[key] = entry;
-        } else {
-          this.elements[key] = this.element.querySelectorAll(entry);
+        }
+        // string => so we have to find a dom elements
+        else {
+          const elements = document.querySelectorAll(entry);
+          this.elements[key] = elements;
 
-          if (this.elements[key].length === 0) {
+          if (elements.length === 0) {
             this.elements[key] = null;
-          } else if (this.elements[key].length === 1) {
-            this.elements[key] = this.element.querySelector(entry);
+          } else if (elements.length === 1) {
+            this.elements[key] = elements[0];
           }
         }
       }
