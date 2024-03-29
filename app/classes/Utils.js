@@ -1,5 +1,10 @@
-export default class Utils {
+import EventEmitter from "./EventEmitter";
+
+export default class Utils extends EventEmitter {
   constructor({ element, elements = {} }) {
+    // extend from Event Emitter
+    super();
+
     this.selector = element;
     this.selectorChildren = elements;
 
