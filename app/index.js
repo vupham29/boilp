@@ -9,7 +9,6 @@ class App {
     this.createPreloader();
 
     this.createPage();
-    this.afterPageLoaded();
 
     this.addEventListener();
   }
@@ -37,6 +36,8 @@ class App {
     this.dynamicImportPage().then(() => {
       const Page = this.pages[this.template].default;
       this.page = new Page();
+
+      this.afterPageLoaded();
     });
   }
 
